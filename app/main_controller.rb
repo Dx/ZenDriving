@@ -65,8 +65,8 @@ class MainController < UIViewController
       distance = Math.sqrt(dlat**2 + dlon**2)
 
       @snapshots.each do |s|
-        totalx += s.x
-        totaly += s.y
+        totalx += s.x.abs
+        totaly += s.y.abs
       end
 
       average_x = totalx / @snapshots.size
