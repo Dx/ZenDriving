@@ -23,8 +23,8 @@ class MainController < UIViewController
     @move_value = Math.sqrt((@xValue - acceleration.x)**2 + (@yValue - acceleration.y)**2)
     @move.text = @move_value.to_s
 
-    @xValue << acceleration.x*30.0
-    @yValue << acceleration.y*30.0
+    @xValue << acceleration.x
+    @yValue << acceleration.y
   end
 
   def calculate
@@ -47,7 +47,7 @@ class MainController < UIViewController
   end
 
   def initializeLocator
-    BW::Location.get(distance_filter: 1, desired_accuracy: :best) do |result|
+    BW::Location.get(distance_filter: 10, desired_accuracy: :nearest_ten_meters) do |result|
       result[:to].class == CLLocation
       
       if @valueX != nil 
