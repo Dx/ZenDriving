@@ -1,12 +1,10 @@
 class Snapshot
-	attr_reader :x
-	attr_reader :y
+	attr_reader :time
 	attr_reader :lat
 	attr_reader :lon
 
-	def initialize(x=0, y=0, lat, lon)
-		@x = x
-		@y = y
+	def initialize(time, lat, lon)
+		@time = time
 		@lat = lat
 		@lon = lon
 	end
