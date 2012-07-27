@@ -8,7 +8,7 @@ class MainController < UIViewController
   	initializeAccelerometer
     initializeLocator
 
-    BW::Location.get(distance_filter: 1, desired_accuracy: :nearest_ten_meters) do |result|
+    BW::Location.get(distance_filter: 10, desired_accuracy: :nearest_ten_meters) do |result|
       result[:to].class == CLLocation
       
       @snapshots << Snapshot.new (Time.new, result[:to].latitude, result[:to].longitude)
@@ -70,10 +70,6 @@ class MainController < UIViewController
 
   def calculate
     if @snapshots.size > 0
-      p "#{@snapshots[@snapshots.size-1].lat} ultima latitud"
-      p "#{@snapshots[@snapshots.size-1].lon} ultima longitud"
-      p "#{@snapshots[0].lat} primera latitud"
-      p "#{@snapshots[0].lon} primera longitud"
 
       @distance_value = haversin_distance(@snapshots[@snapshots.size-1].lat, @snapshots[@snapshots.size-1].lon,
         @snapshots[0].lat, @snapshots[0].lon)
