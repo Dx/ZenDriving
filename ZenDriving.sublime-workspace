@@ -1,0 +1,528 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"apellidos",
+				"Apellidos"
+			],
+			[
+				"UIControlstate",
+				"UIControlStateNormal (0)"
+			],
+			[
+				"back",
+				"backgroundColor"
+			],
+			[
+				"UIIm",
+				"UIImage"
+			],
+			[
+				"UIIma",
+				"UIImageView"
+			],
+			[
+				"bac",
+				"backgroundColor"
+			],
+			[
+				"initwith",
+				"initWithCGRect:"
+			],
+			[
+				"clea",
+				"clearInterval();"
+			],
+			[
+				"ap",
+				"appendData"
+			],
+			[
+				"reques",
+				"requestPost"
+			],
+			[
+				"loca",
+				"locationManager"
+			],
+			[
+				"repe",
+				"repeatTimes"
+			],
+			[
+				"image",
+				"imageView"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/RubyMotionBuilder/RubyMotion.sublime-build",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: jQuery (Select or Create DOM Element)"
+			],
+			[
+				"up",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"html",
+				"HTMLPrettify: Prettify"
+			],
+			[
+				"package",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"abo",
+				"About"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"rails",
+				"Simple Rails Navigator: List controllers"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"intall",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 588.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/saori/Proyectos/ZenDriving/.gitignore",
+		"/Users/saori/Proyectos/ZenDriving/ios/Rakefile",
+		"/Users/saori/Proyectos/cocosmotion/Rakefile",
+		"/Users/saori/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/home.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/home.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/clp/cd01/diagnostico.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/clp/NormaCLP/NormaCLP/Controllers/CLPController.cs",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/views/barTop_view.rb",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/views/root_view.rb",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/controllers/root_view_controller.rb",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/helpers/ui/ui_helper.rb",
+		"/Users/saori/epub2mobi.sh",
+		"/Users/saori/.zshrc",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/app_delegate.rb",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/helpers/ui/ui_helper",
+		"/Users/saori/Proyectos/Tzolkin/Codigo/app/views/crono_view.rb",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque04/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/js/tangram.js",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque01/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram_b1.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque03/tangram03.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque03/tangram03_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque04/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/js/jquery-ui-1.8.21.custom.js",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque02/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque02/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram01_nivel02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram02_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram_b1_nivel2.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque02/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque02/tangram02_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque02/tangram02_nivel02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque02/tangram02_nivel02_step02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque02/tangram02_step02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque02/tangram_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque03/tangram03_step02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque03/tangram_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque01/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque01/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque01/tangram02_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque01/tangram03.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque01/tangram_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque02/tangram_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque03/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque03/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque04/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram03.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram04.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque01/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque01/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque02/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque02/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque02/tangram03.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque02/tangram04.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque02/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque04/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque04/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque04/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque01/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque01/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque01/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque02/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque02/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque02/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque03/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque03/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque03/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque03/tangram03.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque03/tangram04.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque01/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque01/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque02/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque02/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque02/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque03/tangram01.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque03/tangram01_instrucciones.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque03/tangram02.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Programacion/Matematicas/CD 1/tangram_b1.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Programacion/Matematicas/CD 1/tangram_b1_nivel2.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque03/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque03/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque04.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque05.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque02/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/js/jquery-ui-1.8.21.custom.min.js",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque01/tangram_info.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque01/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque01/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd06/bloque02/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque04.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque05.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/cache.manifest",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd01/bloque01/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque02/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque05.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque01/tangram_info.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque02/tangram_info.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/home.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/tangram_evaluacion.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque03/tangram_info.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd03/bloque04.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque01/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque01/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd04/bloque04/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque01/tangram01_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd05/bloque01/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque02/tangram02_felicidades.html",
+		"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate/cd02/bloque02/tangram_evaluacion.html"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/saori/Proyectos/NormaInteractivos",
+			"/Users/saori/Proyectos/dandelion",
+			"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate",
+			"",
+			"/Users/saori/Proyectos/NormaInteractivos/Maqueta/mate"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\n					$('#escuela').val(data.NombreEscuela);\n					$('#maestro').val(data.Maestro);\n					$('#grupo').val(data.Grupo);",
+			"nuevoPomodoro",
+			"= 3",
+			"01_nivel02",
+			"01_nivel03",
+			"01_nivel02",
+			"droppable",
+			"drop",
+			"drag",
+			"jquery-ui-1.8.21.custom.min.js",
+			"['0'",
+			"['-45'",
+			"['0'",
+			"02_nivel01",
+			"<meta name = \"viewport\" content = \"width = device-width\">",
+			"<meta name = \"viewport\" content = \"width = device-width\">\n		<meta name = \"viewport\" content = \"initial-scale = 1.0\">\n		<meta name = \"viewport\" content = \"initial-scale = 2.3, user-scalable = no\">",
+			"ret",
+			"exlude_dirs",
+			"exclude_dirs",
+			"exlude_dirs",
+			":exclude",
+			".yml",
+			">",
+			"l03",
+			"02_nivel03",
+			"-45",
+			".close",
+			"l03",
+			"03",
+			"3/03_nivel01",
+			"03_nivel01",
+			"[",
+			"[*'0'",
+			"['0'",
+			"\"",
+			" ",
+			"revertAngleTriangle",
+			"drop_",
+			"revertTriangle",
+			"drop_",
+			"revertTriangle",
+			"class=\"info\" style='display: none'",
+			"class=\"info\"",
+			"class=\"info\" style=\"display: none\"",
+			"arrow",
+			"forma_02_drag",
+			"arrow",
+			"&iexcl;",
+			"¡",
+			"¿",
+			"Ú",
+			"Ó",
+			"Í",
+			"É",
+			"Á",
+			"ú",
+			"ó",
+			"í",
+			"é",
+			"á",
+			"= 2",
+			"= 5",
+			"hide",
+			"help_message",
+			"window.location.replace('tangram02_felicidades.html')",
+			"= 7",
+			"l01",
+			"m01_",
+			"= 5",
+			"02_n",
+			"02",
+			"m01",
+			"selected",
+			"g'",
+			" ",
+			"l01",
+			"img",
+			"01_nivel03",
+			"img",
+			"m01",
+			"= 7",
+			"l04",
+			"04_nivel01",
+			"m02",
+			"tangram02",
+			"img",
+			"img ",
+			"revertTriangle",
+			"ram01",
+			"l01",
+			"el01",
+			"tangram02_felicidades",
+			"01_nivel03",
+			"= 4",
+			"4",
+			"02_nivel02"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"jquery-ui-1.8.21.custom.js",
+			"exludedirs",
+			"class=\"info\"",
+			"&iexcl;",
+			"&iquest;",
+			"&Uacute;",
+			"&Oacute;",
+			"&Iacute;",
+			"&Eacute;",
+			"&Aacute;",
+			"&uacute;",
+			"&oacute;",
+			"&iacute;",
+			"&eacute;",
+			"&aacute;"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 146.0
+	},
+	"output.jsconsole_view":
+	{
+		"height": 146.0
+	},
+	"output.jshint_view":
+	{
+		"height": 146.0
+	},
+	"replace":
+	{
+		"height": 76.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"tangram3",
+				"Maqueta/mate/cd01/bloque03/tangram03_step02.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 270.0,
+	"status_bar_visible": true
+}

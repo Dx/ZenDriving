@@ -1,0 +1,11 @@
+{
+ "folders": [
+  {
+   "folder_exclude_patterns": [
+    "build", 
+    "ios/build"
+   ], 
+   "path": "/Users/saori/Proyectos/ZenDriving"
+  }
+ ]
+}

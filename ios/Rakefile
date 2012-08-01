@@ -8,5 +8,6 @@ Bundler.require :default
 BW.require '/app/main_controller.rb'
 
 Motion::Project::App.setup do |app|
+  app.codesign_certificate = "iPhone Developer: Ramses Reyes Contreras (94Q7H97XUA)"
   app.name = 'ZenDriving'
 end
