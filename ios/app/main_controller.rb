@@ -203,6 +203,16 @@ class MainController < UIViewController
     @fill.backgroundColor = UIColor.clearColor
     @fill.frame = [[margin, 350], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@fill)
+
+    @showmap_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @showmap_button.frame = [[67, 420], [180, 20]]
+    @showmap_button.addTarget(self, action: :clicked, forControlEvents:UIControlEventTouchUpInside)
+    view.addSubview(@showmap_button)
+  end
+
+  def clicked
+    @mapViewController = MapViewController.alloc.init
+    self.presentModalViewController (@mapViewController, animated:true)
   end
 
 end
