@@ -123,7 +123,7 @@ class MainController < UIViewController
     @move_label.textAlignment = UITextAlignmentCenter
     @move_label.textColor = UIColor.yellowColor
     @move_label.backgroundColor = UIColor.clearColor
-    @move_label.frame = [[10, 80], [60, 100]]
+    @move_label.frame = [[10, 80], [60, 20]]
     view.addSubview(@move_label)
 
     @move_x = UILabel.new
@@ -132,7 +132,7 @@ class MainController < UIViewController
     @move_x.textAlignment = UITextAlignmentCenter
     @move_x.textColor = UIColor.yellowColor
     @move_x.backgroundColor = UIColor.clearColor
-    @move_x.frame = [[70, 80], [60, 100]]
+    @move_x.frame = [[70, 80], [60, 20]]
     view.addSubview(@move_x)
 
     @move_y = UILabel.new
@@ -141,7 +141,7 @@ class MainController < UIViewController
     @move_y.textAlignment = UITextAlignmentCenter
     @move_y.textColor = UIColor.yellowColor
     @move_y.backgroundColor = UIColor.clearColor
-    @move_y.frame = [[150, 80], [60, 100]]
+    @move_y.frame = [[150, 80], [60, 20]]
     view.addSubview(@move_y)
 
 
@@ -151,7 +151,7 @@ class MainController < UIViewController
     @time_label.textAlignment = UITextAlignmentCenter
     @time_label.textColor = UIColor.whiteColor
     @time_label.backgroundColor = UIColor.clearColor
-    @time_label.frame = [[margin, 100], [view.frame.size.width - margin * 2, 110]]
+    @time_label.frame = [[margin, 100], [view.frame.size.width - margin * 2, 20]]
     view.addSubview(@time_label)
 
     @time = UILabel.new
@@ -160,7 +160,7 @@ class MainController < UIViewController
     @time.textAlignment = UITextAlignmentCenter
     @time.textColor = UIColor.whiteColor
     @time.backgroundColor = UIColor.clearColor
-    @time.frame = [[margin, 120], [view.frame.size.width - margin * 2, 130]]
+    @time.frame = [[margin, 120], [view.frame.size.width - margin * 2, 20]]
     view.addSubview(@time)
 
     @distance_label = UILabel.new
@@ -169,7 +169,7 @@ class MainController < UIViewController
     @distance_label.textAlignment = UITextAlignmentCenter
     @distance_label.textColor = UIColor.redColor
     @distance_label.backgroundColor = UIColor.clearColor
-    @distance_label.frame = [[margin, 140], [view.frame.size.width - margin * 2, 150]]
+    @distance_label.frame = [[margin, 140], [view.frame.size.width - margin * 2, 20]]
     view.addSubview(@distance_label)
 
     @distance = UILabel.new
@@ -178,7 +178,7 @@ class MainController < UIViewController
     @distance.textAlignment = UITextAlignmentCenter
     @distance.textColor = UIColor.redColor
     @distance.backgroundColor = UIColor.clearColor
-    @distance.frame = [[margin, 160], [view.frame.size.width - margin * 2, 170]]
+    @distance.frame = [[margin, 160], [view.frame.size.width - margin * 2, 20]]
     view.addSubview(@distance)
 
     @fill_label = UILabel.new
@@ -187,7 +187,7 @@ class MainController < UIViewController
     @fill_label.textAlignment = UITextAlignmentCenter
     @fill_label.textColor = UIColor.whiteColor
     @fill_label.backgroundColor = UIColor.clearColor
-    @fill_label.frame = [[margin, 180], [view.frame.size.width - margin * 2, 190]]
+    @fill_label.frame = [[margin, 180], [view.frame.size.width - margin * 2, 20]]
     view.addSubview(@fill_label)
 
     @fill = UILabel.new
@@ -196,7 +196,7 @@ class MainController < UIViewController
     @fill.textAlignment = UITextAlignmentCenter
     @fill.textColor = UIColor.whiteColor
     @fill.backgroundColor = UIColor.clearColor
-    @fill.frame = [[margin, 200], [view.frame.size.width - margin * 2, 210]]
+    @fill.frame = [[margin, 200], [view.frame.size.width - margin * 2, 20]]
     view.addSubview(@fill)
 
     @start_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -210,7 +210,7 @@ class MainController < UIViewController
     view.addSubview(@stop_button)
 
     @showmap_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @showmap_button.frame = [[67, 320], [180, 20]]
+    @showmap_button.frame = [[67, 320], [180, 30]]
     @showmap_button.addTarget(self, action: :clicked, forControlEvents:UIControlEventTouchUpInside)
     view.addSubview(@showmap_button)
   end
@@ -232,7 +232,7 @@ class MainController < UIViewController
     @timer.invalidate
     @timer = nil
     map_view_controller = MapViewController.alloc.initWithNibName(nil, bundle:nil)
-    self.navigationController.pushViewController(mav_view_controller, animated:true)
+    self.navigationController.pushViewController(map_view_controller, animated:true)
   end
 
   def clicked
