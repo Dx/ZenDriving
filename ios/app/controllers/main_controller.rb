@@ -5,22 +5,27 @@ class MainController < UIViewController
   end
 
   def initializeVariables    
-    @initialXValue = 
-    @xValue = 0
-    @yValue = 0
+    @initial_x_value = 0
+    @initial_y_value = 0
     @fill_value = 50
     @distance_value = 0
     @initialTime = Time.new
     @snapshots = Array.new(4)
+    @is_started = false
   end
 
   def accelerometer (accelerometer, didAccelerate:acceleration)
 
-    @move_value = (Math.sqrt((@xValue - acceleration.x)**2 + (@yValue - acceleration.y)**2) * 15).to_i
-    @move.text = @move_value.to_s
+    if @initial_x_value == 0
+      @initial_x_value = acceleration.x
+      @initial_y_value = acceleration.y
+    end
+    
+    @move_x_value = ((@initial_x_value - acceleration.x)*100.0).abs.to_i
+    @move_y_value = ((@initial_y_value - acceleration.y)*100.0).abs.to_i 
 
-    @xValue << acceleration.x
-    @yValue << acceleration.y
+    @move_x.text = @move_x_value.to_s
+    @move_y.text = @move_y_value.to_s
   end
 
   def haversin_distance( lat1, lon1, lat2, lon2 )
@@ -52,8 +57,7 @@ class MainController < UIViewController
     dMeters
   end
 
-  def add_movement(new_snapshot)
-    
+  def add_movement(new_snapshot)    
     if @first_movement.nil?
       @first_movement = new_snapshot      
     else
@@ -65,7 +69,6 @@ class MainController < UIViewController
     end
 
     @last_movement = new_snapshot
-
   end
 
   def calculate (theTimer)
@@ -76,14 +79,6 @@ class MainController < UIViewController
       
       @time_value = @last_movement.time - @first_movement.time
       
-      if !@move_value.nil?
-        if @fill_value >= 0 && 
-          @fill_value = @fill_value - @move_value
-        else
-          @fill_value = 0
-        end
-      end
-
       if !@middle_movement.nil? && !@last_movement.nil?
         if @fill_value < 100  
           @fill_value += haversin_distance(@middle_movement.lat, @middle_movement.lon, @last_movement.lat, @last_movement.lon).to_i
@@ -109,7 +104,7 @@ class MainController < UIViewController
 
   def initializeAccelerometer
     UIAccelerometer.sharedAccelerometer.setUpdateInterval 0.3
-    UIAccelerometer.sharedAccelerometer.setDelegate self
+    UIAccelerometer.sharedAccelerometer.setDelegate self    
   end
 
   def configureUI
@@ -132,7 +127,7 @@ class MainController < UIViewController
     @move_x.textAlignment = UITextAlignmentCenter
     @move_x.textColor = UIColor.yellowColor
     @move_x.backgroundColor = UIColor.clearColor
-    @move_x.frame = [[70, 80], [60, 20]]
+    @move_x.frame = [[70, 80], [90, 20]]
     view.addSubview(@move_x)
 
     @move_y = UILabel.new
@@ -141,7 +136,7 @@ class MainController < UIViewController
     @move_y.textAlignment = UITextAlignmentCenter
     @move_y.textColor = UIColor.yellowColor
     @move_y.backgroundColor = UIColor.clearColor
-    @move_y.frame = [[150, 80], [60, 20]]
+    @move_y.frame = [[200, 80], [90, 20]]
     view.addSubview(@move_y)
 
 
@@ -200,17 +195,20 @@ class MainController < UIViewController
     view.addSubview(@fill)
 
     @start_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @start_button.setTitle("Start", forState:UIControlStateNormal)
     @start_button.frame = [[10,30], [100, 50]]
     @start_button.addTarget(self, action: :start, forControlEvents:UIControlEventTouchUpInside)
     view.addSubview(@start_button)
 
     @stop_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @stop_button.frame = [[120,30], [180, 50]]
+    @stop_button.setTitle("Stop", forState:UIControlStateNormal)
+    @stop_button.frame = [[150,30], [100, 50]]
     @stop_button.addTarget(self, action: :stop, forControlEvents:UIControlEventTouchUpInside)
     view.addSubview(@stop_button)
 
     @showmap_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @showmap_button.frame = [[67, 320], [180, 30]]
+    @showmap_button.setTitle("Map", forState:UIControlStateNormal)
     @showmap_button.addTarget(self, action: :clicked, forControlEvents:UIControlEventTouchUpInside)
     view.addSubview(@showmap_button)
   end
@@ -219,20 +217,28 @@ class MainController < UIViewController
     initializeVariables
     initializeAccelerometer
     initializeTimer
+    @is_started = true
 
-    BW::Location.get(distance_filter: 1, desired_accuracy: :best) do |result|
+    BW::Location.get(distance_filter: 10, desired_accuracy: :nearest_ten_meters) do |result|
       result[:to].class == CLLocation
       
       add_movement (Snapshot.new (Time.new, result[:to].latitude, result[:to].longitude))
-      
+      if !@is_started
+        break
+      end
     end
   end
 
   def stop
-    @timer.invalidate
-    @timer = nil
+
+    if !@timer.isnil?
+      @timer.invalidate
+      @timer = nil
+    end
+    @is_started = false
     map_view_controller = MapViewController.alloc.initWithNibName(nil, bundle:nil)
     self.navigationController.pushViewController(map_view_controller, animated:true)
+
   end
 
   def clicked
