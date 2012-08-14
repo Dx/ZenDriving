@@ -10,4 +10,6 @@ BW.require '/app/main_controller.rb'
 Motion::Project::App.setup do |app|
   app.name = 'ZenDriving'
   app.frameworks += ['CoreLocation', 'MapKit']
+  app.interface_orientations = [:landscape_left, :landscape_right]
+  app.resources_dir = "resources"
 end

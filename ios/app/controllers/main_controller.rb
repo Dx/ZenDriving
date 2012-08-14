@@ -1,6 +1,6 @@
 class MainController < UIViewController
 
-  def viewDidLoad
+  def viewDidLoad    
     configureUI
   end
 
@@ -12,49 +12,6 @@ class MainController < UIViewController
     @initialTime = Time.new
     @snapshots = Array.new(4)
     @is_started = false
-  end
-
-  def accelerometer (accelerometer, didAccelerate:acceleration)
-
-    if @initial_x_value == 0
-      @initial_x_value = acceleration.x
-      @initial_y_value = acceleration.y
-    end
-    
-    @move_x_value = ((@initial_x_value - acceleration.x)*100.0).abs.to_i
-    @move_y_value = ((@initial_y_value - acceleration.y)*100.0).abs.to_i 
-
-    @move_x.text = @move_x_value.to_s
-    @move_y.text = @move_y_value.to_s
-  end
-
-  def haversin_distance( lat1, lon1, lat2, lon2 )
-
-    rad_per_deg = 0.017453293  #  PI/180
-    # the great circle distance d will be in whatever units R is in
-    rmiles = 3956           # radius of the great circle in miles
-    rkm = 6371              # radius in kilometers...some algorithms use 6367
-    rfeet = rmiles * 5282   # radius in feet
-    rmeters = rkm * 1000    # radius in meters
-
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    dlon_rad = dlon * rad_per_deg
-    dlat_rad = dlat * rad_per_deg
-    lat1_rad = lat1 * rad_per_deg
-    lon1_rad = lon1 * rad_per_deg
-
-    lat2_rad = lat2 * rad_per_deg
-    lon2_rad = lon2 * rad_per_deg
-       
-    a = (Math.sin(dlat_rad/2))**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * (Math.sin(dlon_rad/2))**2
-    c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a))
-     
-    dMi = rmiles * c          # delta between the two points in miles
-    dKm = rkm * c             # delta in kilometers
-    dFeet = rfeet * c         # delta in feet
-    dMeters = rmeters * c     # delta in meters
-    dMeters
   end
 
   def add_movement(new_snapshot)    
@@ -102,10 +59,7 @@ class MainController < UIViewController
     @timer = NSTimer.scheduledTimerWithTimeInterval (1.0, target:self, selector:'calculate:', userInfo:nil, repeats:'YES')
   end
 
-  def initializeAccelerometer
-    UIAccelerometer.sharedAccelerometer.setUpdateInterval 0.3
-    UIAccelerometer.sharedAccelerometer.setDelegate self    
-  end
+  
 
   def configureUI
     
@@ -219,14 +173,6 @@ class MainController < UIViewController
     initializeTimer
     @is_started = true
 
-    BW::Location.get(distance_filter: 10, desired_accuracy: :nearest_ten_meters) do |result|
-      result[:to].class == CLLocation
-      
-      add_movement (Snapshot.new (Time.new, result[:to].latitude, result[:to].longitude))
-      if !@is_started
-        break
-      end
-    end
   end
 
   def stop
@@ -235,6 +181,7 @@ class MainController < UIViewController
       @timer.invalidate
       @timer = nil
     end
+    
     @is_started = false
     map_view_controller = MapViewController.alloc.initWithNibName(nil, bundle:nil)
     self.navigationController.pushViewController(map_view_controller, animated:true)

@@ -5,12 +5,11 @@ class AppDelegate
     first_controller = MainController.alloc.initWithNibName(nil, bundle:nil)
     nav_controller = UINavigationController.alloc.initWithRootViewController(first_controller)
 
-
-    historic_controller = UIViewController.alloc.initWithNibName(nil, bundle:nil)
-    historic_controller.title = "History"
+    driver_controller = DriverController.alloc.initWithNibName(nil, bundle:nil)
+    driver_controller.title = "Drive"
 
     tab_controller = UITabBarController.alloc.initWithNibName(nil, bundle:nil)
-    tab_controller.viewControllers = [nav_controller, historic_controller]
+    tab_controller.viewControllers = [nav_controller, driver_controller]
 
     @window.rootViewController = tab_controller
 
