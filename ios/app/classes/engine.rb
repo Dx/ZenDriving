@@ -1,10 +1,10 @@
 class Engine
-	def initialize
-
-	end
 
 	def start
-    @isStarted = TRUE    
+    @isStarted = TRUE   
+    @distance = 0.0 
+    @initial_x_value = 0
+    @initial_y_value = 0
     initializeAccelerometer
     initializeLocator
 	end
@@ -14,17 +14,11 @@ class Engine
 	end
 
   def notificateLocator(locatorNotif)
-
-    NSNotificationCenter.defaultCenter.postNotificationName("notificateLocator",
-       object:locatorNotif)
-
+    App.notification_center.post("notificationLocator", locatorNotif)
   end
 
   def notificateAccelerator(acceleratorNotif)
-
-    NSNotificationCenter.defaultCenter.postNotificationName("notificateAccelerator",
-       object:acceleratorNotif)
-
+    App.notification_center.post("notificationAccelerator", acceleratorNotif)    
   end
 
   def initializeLocator
@@ -36,13 +30,12 @@ class Engine
         @initial_coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
       end
 
-      @distance += harvesin_distance(result[:to].latitude, result[:to].longitude, result[:from].latitude, result[:from].longitude)
-
-      coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
-
-      movement_notification = MovementNotification.new(@distance, coordinate)
-
-      notificateLocator(movement_notification)
+      if result[:from] != nil
+        @distance += haversin_distance(result[:to].latitude, result[:to].longitude, result[:from].latitude, result[:from].longitude)
+        coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
+        movement_notification = MovementNotification.new(@distance, coordinate)
+        self.notificateLocator(movement_notification)
+      end
       
       if !@is_started
         break
@@ -62,12 +55,14 @@ class Engine
       @initial_y_value = acceleration.y
     end
     
-    @move_x_value = ((@initial_x_value - acceleration.x)*100.0).abs.to_i
-    @move_y_value = ((@initial_y_value - acceleration.y)*100.0).abs.to_i 
+    move_x_value = ((@initial_x_value - acceleration.x)*100.0).abs.to_i
+    move_y_value = ((@initial_y_value - acceleration.y)*100.0).abs.to_i 
 
-    accelerometer_notification = @move_x_value + @move_y_value
+    notif = AcceleratorNotification.new(move_x_value + move_y_value)
 
-    notificateAccelerator(accelerometer_notification)
+    # notif = AcceleratorNotification.new(acceleration.x + acceleration.y)
+
+    self.notificateAccelerator(notif)
   end
 
   def haversin_distance( lat1, lon1, lat2, lon2 )

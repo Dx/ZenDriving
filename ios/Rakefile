@@ -3,6 +3,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
 require 'bundler'
 require "bubble-wrap/location"
+require "bubble-wrap/core"
 Bundler.setup
 Bundler.require :default
 BW.require '/app/main_controller.rb'
