@@ -1,17 +1,33 @@
 class Engine
 
+  def status; @status; end
+
 	def start
-    @isStarted = TRUE   
-    @distance = 0.0 
-    @initial_x_value = 0
-    @initial_y_value = 0
+    if @status != 0
+      initializeValues
+    end
     initializeAccelerometer
     initializeLocator
+    @status = 1    
 	end
 
-	def stop
-    @isStarted = FALSE
+  def initializeValues
+    @distance = 0.0 
+    @total_distance = 0.0 
+    @initial_x_value = 0
+    @initial_y_value = 0
+  end
+
+	def stop    
+    @status = -1
+    @accelerometer.delegate = nil
+    initializeValues
 	end
+
+  def pause
+    @status = 0    
+    @accelerometer.delegate = nil
+  end
 
   def notificateLocator(locatorNotif)
     App.notification_center.post("notificationLocator", locatorNotif)
@@ -30,22 +46,26 @@ class Engine
         @initial_coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
       end
 
+      p "distance #{@distance.to_s}"
+      p "total distance #{@total_distance.to_s}"
+
       if result[:from] != nil
-        @distance += haversin_distance(result[:to].latitude, result[:to].longitude, result[:from].latitude, result[:from].longitude)
+        @distance = haversin_distance(result[:to].latitude, result[:to].longitude, result[:from].latitude, result[:from].longitude)
+        @total_distance += @distance
         coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
         movement_notification = MovementNotification.new(@distance, coordinate)
         self.notificateLocator(movement_notification)
       end
       
-      if !@is_started
+      if @status != 1
         break
       end
     end
   end
 
 	def initializeAccelerometer
-    UIAccelerometer.sharedAccelerometer.setUpdateInterval 0.3
-    UIAccelerometer.sharedAccelerometer.setDelegate self    
+    @accelerometer = UIAccelerometer.sharedAccelerometer.setUpdateInterval 0.3
+    @accelerometer.setDelegate self
   end
 
   def accelerometer (accelerometer, didAccelerate:acceleration)
@@ -55,12 +75,10 @@ class Engine
       @initial_y_value = acceleration.y
     end
     
-    move_x_value = ((@initial_x_value - acceleration.x)*100.0).abs.to_i
-    move_y_value = ((@initial_y_value - acceleration.y)*100.0).abs.to_i 
+    move_x_value = ((@initial_x_value - acceleration.x)*40.0).abs.to_i
+    move_y_value = ((@initial_y_value - acceleration.y)*40.0).abs.to_i 
 
     notif = AcceleratorNotification.new(move_x_value + move_y_value)
-
-    # notif = AcceleratorNotification.new(acceleration.x + acceleration.y)
 
     self.notificateAccelerator(notif)
   end
