@@ -39,9 +39,10 @@ class DriverController < UIViewController
 
       if @temp_distance + notification.object.distance.to_i <= 100
         @temp_distance += notification.object.distance.to_i
-      else
-        @temp_distance = 0
+      else        
         @total_score += @temp_score
+        @temp_distance = 0
+        @temp_score = 0
       end
 
       @level_label.text = @temp_score.to_s
