@@ -10,6 +10,13 @@ class DriverController < UIViewController
     @engine.start
   end
 
+  def shouldAutorotateToInterfaceOrientation(orientation)
+    if orientation == UIDeviceOrientationPortraitUpsideDown
+      return false
+    end
+    true
+  end
+
   def suscribe_to_events
     @foreground_observer = App.notification_center.observe "notificationLocator" do |notification|
       @movement_label.text = notification.object.distance.to_s      
