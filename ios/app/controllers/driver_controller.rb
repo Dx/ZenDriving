@@ -122,6 +122,7 @@ class DriverController < UIViewController
       CLLocation.alloc.initWithLatitude(19.296900, longitude:-99.080507),
       CLLocation.alloc.initWithLatitude(19.296700, longitude:-99.080607)
     ]
+    
     self.presentModalViewController(NVMapViewController.alloc.initWithPoints(points), animated:true)
   end
   
