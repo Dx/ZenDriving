@@ -114,6 +114,16 @@ class DriverController < UIViewController
     end
   end
 
+  def clickShowMap
+    points = [CLLocation.alloc.initWithLatitude(19.297862, longitude:-99.080187),
+      CLLocation.alloc.initWithLatitude(19.297595, longitude:-99.080207),
+      CLLocation.alloc.initWithLatitude(19.297300, longitude:-99.080307),
+      CLLocation.alloc.initWithLatitude(19.297100, longitude:-99.080407),
+      CLLocation.alloc.initWithLatitude(19.296900, longitude:-99.080507),
+      CLLocation.alloc.initWithLatitude(19.296700, longitude:-99.080607)
+    ]
+    self.presentModalViewController(NVMapViewController.alloc.initWithPoints(points), animated:true)
+  end
   
   def configure_ui
 
@@ -143,5 +153,12 @@ class DriverController < UIViewController
     @score_label.backgroundColor = UIColor.clearColor
     @score_label.frame = [[160, 250], [150, 30]]
     self.view.addSubview(@score_label)
+
+    @buttonMap = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @buttonMap.frame = [[10, 25],[20, 20]]
+
+    @buttonMap.addTarget(self, action: :clickShowMap, forControlEvents: UIControlEventTouchUpInside)
+
+    self.view.addSubview(@buttonMap)
   end
 end

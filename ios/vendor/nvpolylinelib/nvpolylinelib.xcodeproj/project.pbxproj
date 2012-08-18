@@ -1,0 +1,271 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18EE7D2515E01A2600B6D69D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE7D2415E01A2600B6D69D /* Foundation.framework */; };
+		18EE7D3A15E01A5900B6D69D /* NVMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE7D3315E01A5900B6D69D /* NVMapViewController.m */; };
+		18EE7D3B15E01A5900B6D69D /* NVPolylineAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE7D3515E01A5900B6D69D /* NVPolylineAnnotation.m */; };
+		18EE7D3C15E01A5900B6D69D /* NVPolylineAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE7D3715E01A5900B6D69D /* NVPolylineAnnotationView.m */; };
+		18EE7D3F15E01AC300B6D69D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE7D3E15E01AC300B6D69D /* UIKit.framework */; };
+		18EE7D4115E01AC900B6D69D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE7D4015E01AC900B6D69D /* QuartzCore.framework */; };
+		18EE7D4315E01ACD00B6D69D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE7D4215E01ACD00B6D69D /* CoreGraphics.framework */; };
+		18EE7D4515E01AD800B6D69D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE7D4415E01AD800B6D69D /* MapKit.framework */; };
+		18EE7D4715E01AE000B6D69D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE7D4615E01AE000B6D69D /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		18EE7D1F15E01A2600B6D69D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		18EE7D2115E01A2600B6D69D /* libnvpolylinelib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libnvpolylinelib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		18EE7D2415E01A2600B6D69D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		18EE7D2815E01A2600B6D69D /* nvpolylinelib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "nvpolylinelib-Prefix.pch"; sourceTree = "<group>"; };
+		18EE7D3215E01A5900B6D69D /* NVMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMapViewController.h; sourceTree = "<group>"; };
+		18EE7D3315E01A5900B6D69D /* NVMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMapViewController.m; sourceTree = "<group>"; };
+		18EE7D3415E01A5900B6D69D /* NVPolylineAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVPolylineAnnotation.h; sourceTree = "<group>"; };
+		18EE7D3515E01A5900B6D69D /* NVPolylineAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVPolylineAnnotation.m; sourceTree = "<group>"; };
+		18EE7D3615E01A5900B6D69D /* NVPolylineAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVPolylineAnnotationView.h; sourceTree = "<group>"; };
+		18EE7D3715E01A5900B6D69D /* NVPolylineAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVPolylineAnnotationView.m; sourceTree = "<group>"; };
+		18EE7D3E15E01AC300B6D69D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		18EE7D4015E01AC900B6D69D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		18EE7D4215E01ACD00B6D69D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		18EE7D4415E01AD800B6D69D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		18EE7D4615E01AE000B6D69D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18EE7D1E15E01A2600B6D69D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18EE7D4715E01AE000B6D69D /* CoreLocation.framework in Frameworks */,
+				18EE7D4515E01AD800B6D69D /* MapKit.framework in Frameworks */,
+				18EE7D4315E01ACD00B6D69D /* CoreGraphics.framework in Frameworks */,
+				18EE7D4115E01AC900B6D69D /* QuartzCore.framework in Frameworks */,
+				18EE7D3F15E01AC300B6D69D /* UIKit.framework in Frameworks */,
+				18EE7D2515E01A2600B6D69D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18EE7D1615E01A2600B6D69D = {
+			isa = PBXGroup;
+			children = (
+				18EE7D2615E01A2600B6D69D /* nvpolylinelib */,
+				18EE7D2315E01A2600B6D69D /* Frameworks */,
+				18EE7D2215E01A2600B6D69D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18EE7D2215E01A2600B6D69D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18EE7D2115E01A2600B6D69D /* libnvpolylinelib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18EE7D2315E01A2600B6D69D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18EE7D4615E01AE000B6D69D /* CoreLocation.framework */,
+				18EE7D4415E01AD800B6D69D /* MapKit.framework */,
+				18EE7D4215E01ACD00B6D69D /* CoreGraphics.framework */,
+				18EE7D4015E01AC900B6D69D /* QuartzCore.framework */,
+				18EE7D3E15E01AC300B6D69D /* UIKit.framework */,
+				18EE7D2415E01A2600B6D69D /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18EE7D2615E01A2600B6D69D /* nvpolylinelib */ = {
+			isa = PBXGroup;
+			children = (
+				18EE7D3215E01A5900B6D69D /* NVMapViewController.h */,
+				18EE7D3315E01A5900B6D69D /* NVMapViewController.m */,
+				18EE7D3415E01A5900B6D69D /* NVPolylineAnnotation.h */,
+				18EE7D3515E01A5900B6D69D /* NVPolylineAnnotation.m */,
+				18EE7D3615E01A5900B6D69D /* NVPolylineAnnotationView.h */,
+				18EE7D3715E01A5900B6D69D /* NVPolylineAnnotationView.m */,
+				18EE7D2715E01A2600B6D69D /* Supporting Files */,
+			);
+			path = nvpolylinelib;
+			sourceTree = "<group>";
+		};
+		18EE7D2715E01A2600B6D69D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18EE7D2815E01A2600B6D69D /* nvpolylinelib-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18EE7D2015E01A2600B6D69D /* nvpolylinelib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18EE7D2F15E01A2700B6D69D /* Build configuration list for PBXNativeTarget "nvpolylinelib" */;
+			buildPhases = (
+				18EE7D1D15E01A2600B6D69D /* Sources */,
+				18EE7D1E15E01A2600B6D69D /* Frameworks */,
+				18EE7D1F15E01A2600B6D69D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nvpolylinelib;
+			productName = nvpolylinelib;
+			productReference = 18EE7D2115E01A2600B6D69D /* libnvpolylinelib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18EE7D1815E01A2600B6D69D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = hardbit;
+			};
+			buildConfigurationList = 18EE7D1B15E01A2600B6D69D /* Build configuration list for PBXProject "nvpolylinelib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 18EE7D1615E01A2600B6D69D;
+			productRefGroup = 18EE7D2215E01A2600B6D69D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18EE7D2015E01A2600B6D69D /* nvpolylinelib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18EE7D1D15E01A2600B6D69D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18EE7D3A15E01A5900B6D69D /* NVMapViewController.m in Sources */,
+				18EE7D3B15E01A5900B6D69D /* NVPolylineAnnotation.m in Sources */,
+				18EE7D3C15E01A5900B6D69D /* NVPolylineAnnotationView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		18EE7D2D15E01A2700B6D69D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18EE7D2E15E01A2700B6D69D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18EE7D3015E01A2700B6D69D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/nvpolylinelib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "nvpolylinelib/nvpolylinelib-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		18EE7D3115E01A2700B6D69D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/nvpolylinelib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "nvpolylinelib/nvpolylinelib-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18EE7D1B15E01A2600B6D69D /* Build configuration list for PBXProject "nvpolylinelib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18EE7D2D15E01A2700B6D69D /* Debug */,
+				18EE7D2E15E01A2700B6D69D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18EE7D2F15E01A2700B6D69D /* Build configuration list for PBXNativeTarget "nvpolylinelib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18EE7D3015E01A2700B6D69D /* Debug */,
+				18EE7D3115E01A2700B6D69D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18EE7D1815E01A2600B6D69D /* Project object */;
+}
