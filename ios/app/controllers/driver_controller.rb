@@ -104,12 +104,12 @@ class DriverController < UIViewController
 
       @accelerate_label.text = notification.object.level.to_s
 
-      if notification.object.level > 5 && notification.object.level < 10
+      if notification.object.level > 5 && notification.object.level <= 10
         self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("warning.png"))
       elsif notification.object.level > 10
         self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("warning2.png"))
       else
-        self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("play.png"))
+        self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("play1.png"))
       end
     end
   end
