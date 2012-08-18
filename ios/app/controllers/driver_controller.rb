@@ -127,7 +127,6 @@ class DriverController < UIViewController
   end
   
   def configure_ui
-
     @accelerate_label = UILabel.new
     @accelerate_label.font = UIFont.systemFontOfSize(15)
     @accelerate_label.text = 'Acel'
