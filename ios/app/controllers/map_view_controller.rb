@@ -16,4 +16,12 @@ class MapViewController < UIViewController
     self.view.setRegion(region)
     PointsMaps::Data.each { |annotation| self.view.addAnnotation(annotation) }
   end
+
+  def shouldAutorotateToInterfaceOrientation(orientation)
+    if orientation != UIDeviceOrientationLandscapeLeft
+      return false
+    else
+      return true
+    end
+  end
 end

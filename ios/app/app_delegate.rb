@@ -1,5 +1,6 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
+    UIDevice.currentDevice.setOrientation(UIInterfaceOrientationLandscapeLeft)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     
     first_controller = DriverController.alloc.initWithNibName(nil, bundle:nil)

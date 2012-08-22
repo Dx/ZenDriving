@@ -4,6 +4,16 @@ class Engine
 
   def initialize
     initializeValues
+    @coordinates = Array.new
+  end
+
+  def initializeValues
+    @distance = 0.0 
+    @total_distance = 0.0 
+    @initial_x_value = 0
+    @initial_y_value = 0
+    @status = -1
+    @initial_time = Time.new
   end
 
 	def start
@@ -13,25 +23,30 @@ class Engine
     initializeAccelerometer
     initializeLocator
     @status = 1    
-	end
-
-  def initializeValues
-    @distance = 0.0 
-    @total_distance = 0.0 
-    @initial_x_value = 0
-    @initial_y_value = 0
-    @status = -1
-  end
+	end  
 
 	def stop    
     @status = -1
-    @accelerometer.setDelegate = nil
-    initializeValues
+    @accelerometer = nil
+    @final_time = Time.new
 	end
 
   def pause
     @status = 0    
-    @accelerometer.setDelegate = nil
+    @accelerometer = nil
+  end
+
+  def getCoordinates
+    @coordinates
+  end
+
+  def getTimeElapsed
+    @final_time = Time.new
+    (@final_time - @initial_time).to_s
+  end
+
+  def getTotalDistance
+    (@total_distance/1000).to_i.to_s
   end
 
   def notificateLocator(locatorNotif)
@@ -49,16 +64,16 @@ class Engine
 
       if @initial_coordinate == nil
         @initial_coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
+        @coordinates << @initial_coordinate
       end
-
-      p "distance #{@distance.to_s}"
-      p "total distance #{@total_distance.to_s}"
 
       if result[:from] != nil
         @distance = haversin_distance(result[:to].latitude, result[:to].longitude, result[:from].latitude, result[:from].longitude)
         @total_distance += @distance
         coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
         movement_notification = MovementNotification.new(@distance, coordinate)
+        @coordinates << coordinate
+
         self.notificateLocator(movement_notification)
       end
       
@@ -85,7 +100,9 @@ class Engine
 
     notif = AcceleratorNotification.new(move_x_value + move_y_value)
 
-    self.notificateAccelerator(notif)
+    if @status == 1
+      self.notificateAccelerator(notif)
+    end
   end
 
   def haversin_distance( lat1, lon1, lat2, lon2 )

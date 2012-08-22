@@ -12,7 +12,7 @@ Motion::Project::App.setup do |app|
   #app.codesign_certificate = "iPhone Developer: Ramses Reyes Contreras (94Q7H97XUA)"
   app.name = 'ZenDriving'
   app.frameworks += ['CoreLocation', 'MapKit', 'CoreGraphics', 'QuartzCore', 'UIKit']
-  app.interface_orientations = [:landscape_left, :landscape_right]
+  app.interface_orientations = [:landscape_left]
   app.resources_dir = "resources"
   # app.vendor_project('vendor/nvpolylinelib',
   #         :xcode,

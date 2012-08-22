@@ -193,4 +193,12 @@ class MainController < UIViewController
     self.navigationController.pushViewController(@mapViewController, animated:true)
   end
 
+  def shouldAutorotateToInterfaceOrientation(orientation)
+    if orientation != UIDeviceOrientationLandscapeLeft
+      return false
+    else
+      return true
+    end
+  end
+
 end
