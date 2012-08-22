@@ -1,10 +1,7 @@
 class DriverController < UIViewController
 
   def viewDidLoad
-    @temp_score = 0
-    @total_score = 0
-    @temp_distance = 0
-
+    
     self.view.backgroundColor = UIColor.blackColor
 
     @level_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
@@ -22,15 +19,16 @@ class DriverController < UIViewController
 
     self.view.addSubview(@car_view)
 
-
-
     configure_ui
     suscribe_to_events
 
-    view
+    @engine = Engine.new    
+  end
 
-    @engine = Engine.new
-    @engine.start
+  def initialize_scores
+    @temp_score = 0
+    @total_score = 0
+    @temp_distance = 0
   end
 
   def animate_to_next_point(view, percentage)
@@ -53,10 +51,10 @@ class DriverController < UIViewController
   def touchesEnded(touches, withEvent:event)
     if @engine.status == 1
       @engine.pause
-      self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("pause.png"))
+      @car_view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("pause.png"))
     elsif @engine.status == 0
       @engine.start
-      self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("play.png"))
+      @car_view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("play1.png"))
     end
   end
 
@@ -72,7 +70,7 @@ class DriverController < UIViewController
 
       @temp_score += notification.object.distance.to_i
 
-      if @temp_distance + notification.object.distance.to_i <= 100
+      if @temp_distance + notification.object.distance.to_i <= 110
         @temp_distance += notification.object.distance.to_i
       else        
         @total_score += (@temp_score > 100) ? 100 : @temp_score
@@ -125,6 +123,18 @@ class DriverController < UIViewController
     
     self.presentModalViewController(NVMapViewController.alloc.initWithPoints(points), animated:true)
   end
+
+  def clickStartButton
+    p "status #{@engine.status}"
+    if @engine.status == -1
+      initialize_scores
+      @engine.start
+    else
+      @engine.stop
+
+      # Show score view
+    end
+  end
   
   def configure_ui
     @accelerate_label = UILabel.new
@@ -137,22 +147,27 @@ class DriverController < UIViewController
     self.view.addSubview(@accelerate_label)
 
     @level_label = UILabel.new
-    @level_label.font = UIFont.systemFontOfSize(35)
+    @level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
     @level_label.text = '0'
     @level_label.textAlignment = UITextAlignmentCenter
     @level_label.textColor = UIColor.whiteColor
     @level_label.backgroundColor = UIColor.clearColor
-    @level_label.frame = [[160, 150], [150, 30]]
+    @level_label.frame = [[160, 150], [150, 34]]
     self.view.addSubview(@level_label)
 
     @score_label = UILabel.new
-    @score_label.font = UIFont.systemFontOfSize(35)
+    @score_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
     @score_label.text = '0'
     @score_label.textAlignment = UITextAlignmentCenter
-    @score_label.textColor = UIColor.blueColor
+    @score_label.textColor = UIColor.whiteColor
     @score_label.backgroundColor = UIColor.clearColor
-    @score_label.frame = [[160, 250], [150, 30]]
+    @score_label.frame = [[160, 250], [150, 34]]
     self.view.addSubview(@score_label)
+
+    @startButton = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @startButton.frame = [[350, 25],[30, 30]]
+    @startButton.addTarget(self, action: :clickStartButton, forControlEvents: UIControlEventTouchUpInside)
+    self.view.addSubview(@startButton)
 
     @buttonMap = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @buttonMap.frame = [[10, 25],[20, 20]]
