@@ -7,6 +7,7 @@ class DriverController < UIViewController
 
 
   def viewDidLoad
+    UIApplication.sharedApplication.setStatusBarOrientation(UIInterfaceOrientationLandscapeRight)
     
     configure_ui
     suscribe_to_distance_event
@@ -127,7 +128,6 @@ class DriverController < UIViewController
   end
   
   def configure_ui
-
     self.view.backgroundColor = UIColor.blackColor
 
     @level_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
