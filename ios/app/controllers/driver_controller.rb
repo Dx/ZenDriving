@@ -12,8 +12,6 @@ class DriverController < UIViewController
 
 
   def viewDidLoad
-    UIApplication.sharedApplication.setStatusBarOrientation(UIInterfaceOrientationLandscapeRight)
-    
     configure_ui
     suscribe_to_distance_event
     suscribe_to_accelerator_event
@@ -25,6 +23,7 @@ class DriverController < UIViewController
     @temp_score = 0
     @total_score = 0
     @temp_distance = 0
+    @best_score = 0
   end
 
   def paintScores
@@ -77,6 +76,7 @@ class DriverController < UIViewController
         @temp_score += notification.object.distance.to_i
       else        
         @total_score += (@temp_score > 100) ? 100 : @temp_score
+        showTempScore
         animate_to_next_point @level_view, 100
         @temp_distance = 0
         @temp_score = 0
@@ -85,6 +85,29 @@ class DriverController < UIViewController
       paintScores
 
     end
+  end
+
+  def showTempScore
+    
+    @best_score = (@temp_score > @best_score) ? @temp_score : @best_score
+    @prueba_label.text = @best_score.to_s
+
+    # @second_level_label.textColor = UIColor.whiteColor
+    # @second_level_label.backgroundColor = UIColor.clearColor
+    # @second_level_label.frame = [[0,0], [480, 320]]
+    # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
+    
+    # @second_level_label.text = @temp_score.to_s
+
+    # UIView.animateWithDuration(0.5, animations:lambda{
+    #     @second_level_label.transform = CGAffineTransformMakeScale( 3.0, 3.0 )          
+    #     @second_level_label.textColor = UIColor.whiteColor
+    #   }, 
+    #   completion:lambda{
+    #     @second_level_label.textColor = UIColor.clearColor
+    #     @second_level_label.transform = CGAffineTransformMakeScale( 1.0, 1.0 );
+    #   })
+
   end
 
   def suscribe_to_accelerator_event
@@ -111,7 +134,8 @@ class DriverController < UIViewController
       @engine.pause
       @car_view.backgroundColor = getColor("Pause", "Mask")
       @level_view.backgroundColor = getColor("Pause", "Background")
-      @state_icon.setImage = UIImage.imageNamed("icnPause.png")
+      @state_icon.image = UIImage.imageNamed("icnPause.png")
+      @state_icon.setHidden(0)
       @time_label.textColor = UIColor.whiteColor
       @km_label.textColor = UIColor.whiteColor
       @level_label.textColor = UIColor.clearColor
@@ -121,7 +145,7 @@ class DriverController < UIViewController
       @engine.start
       @car_view.backgroundColor = getColor("Play", "Mask")
       @level_view.backgroundColor = getColor("Play", "Background")
-      @state_icon.image = nil
+      @state_icon.setHidden(1)
       @time_label.textColor = UIColor.clearColor
       @km_label.textColor = UIColor.clearColor
       @level_label.textColor = UIColor.whiteColor
@@ -133,7 +157,7 @@ class DriverController < UIViewController
   end
 
   def clickStartButton
-    changeColors(12)
+    
     if @engine.status == -1
       initialize_scores
       @engine.start
@@ -188,6 +212,15 @@ class DriverController < UIViewController
     @accelerate_label.frame = [[20, 20], [150, 30]]
     @car_view.addSubview(@accelerate_label)
 
+    @prueba_label = UILabel.new
+    @prueba_label.font = UIFont.systemFontOfSize(15)
+    @prueba_label.text = 'Best'
+    @prueba_label.textAlignment = UITextAlignmentCenter 
+    @prueba_label.textColor = UIColor.whiteColor
+    @prueba_label.backgroundColor = UIColor.clearColor
+    @prueba_label.frame = [[120, 20], [150, 30]]
+    @car_view.addSubview(@prueba_label)
+
     @level_label = UILabel.new
     @level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
     @level_label.text = '0'
@@ -196,6 +229,15 @@ class DriverController < UIViewController
     @level_label.backgroundColor = UIColor.clearColor
     @level_label.frame = [[160, 150], [150, 34]]
     @car_view.addSubview(@level_label)
+
+    # @second_level_label = UILabel.new
+    # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
+    # @second_level_label.text = ""
+    # @second_level_label.textAlignment = UITextAlignmentCenter
+    # @second_level_label.textColor = UIColor.whiteColor
+    # @second_level_label.backgroundColor = UIColor.clearColor
+    # @second_level_label.frame = [[160, 150], [150, 34]] 
+    # @car_view.addSubview(@second_level_label)
 
     @score_label = UILabel.new
     @score_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
@@ -225,7 +267,8 @@ class DriverController < UIViewController
     @car_view.addSubview(@time_label)
 
     @startButton = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @startButton.frame = [[350, 100],[35, 35]]
+    @startButton.frame = [[380, 20],[81, 81]]
+    @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayActive.png"), forState:UIControlStateNormal)
     @startButton.addTarget(self, action: :clickStartButton, forControlEvents: UIControlEventTouchUpInside)
     @car_view.addSubview(@startButton)
 
@@ -234,15 +277,14 @@ class DriverController < UIViewController
     @buttonMap.addTarget(self, action: :clickShowMap, forControlEvents: UIControlEventTouchUpInside)
     @car_view.addSubview(@buttonMap)
 
-    @state_icon = UIImageView.alloc.initWithFrame([[350, 20], [81, 81]])
-    @state_icon.image = UIImage.imageNamed("icnPause.png")
-    @state_icon.setHidden(0)
+    @state_icon = UIView.alloc.initWithFrame([[20, 20], [81, 81]])
+    @state_icon.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("icnPause.png"))
     @car_view.addSubview(@stateIcon)
     
   end
 
   def shouldAutorotateToInterfaceOrientation(orientation)
-    if orientation != UIDeviceOrientationLandscapeLeft
+    if orientation != UIDeviceOrientationLandscapeRight
       return false
     else
       return true
