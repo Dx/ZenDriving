@@ -19,6 +19,7 @@ xcuserdata/
 xcuserdata/
 *.perspective
 *.tm_build_errors
+build-iPhoneOS/
 
 # Generated files
 *.o
