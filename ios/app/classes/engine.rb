@@ -42,11 +42,11 @@ class Engine
 
   def getTimeElapsed
     @final_time = Time.new
-    (@final_time - @initial_time).to_s
+    ((@final_time - @initial_time)/60).to_i.to_s
   end
 
   def getTotalDistance
-    (@total_distance/1000).to_i.to_s
+    (@total_distance/1000).to_s
   end
 
   def notificateLocator(locatorNotif)
