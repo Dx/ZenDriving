@@ -34,36 +34,25 @@ class DriverController < UIViewController
     animate_to_next_point @score_view, @temp_score
   end
 
-  def getColor(modus, type)
-    case modus
-      when "Play"
-        result = (type=="Mask") ? UIColor.alloc.initWithPatternImage(UIImage.imageNamed(PLAY_IMAGE)) : UIColor.alloc.initWithPatternImage(UIImage.imageNamed(BG_PLAY_IMAGE))
-      when "Pause"
-        result = (type=="Mask") ? UIColor.alloc.initWithPatternImage(UIImage.imageNamed(PAUSE_IMAGE)) : UIColor.alloc.initWithPatternImage(UIImage.imageNamed(BG_PAUSE_IMAGE))
-      when "Warning1"
-        result = (type=="Mask") ? UIColor.alloc.initWithPatternImage(UIImage.imageNamed(WARNING1_IMAGE)) : UIColor.alloc.initWithPatternImage(UIImage.imageNamed(BG_WARNING1_IMAGE))
-      when "Warning2"
-        result = (type=="Mask") ? UIColor.alloc.initWithPatternImage(UIImage.imageNamed(WARNING2_IMAGE)) : UIColor.alloc.initWithPatternImage(UIImage.imageNamed(BG_WARNING2_IMAGE))
-      
-    end
-    result
+  def getImage(image)
+    UIColor.alloc.initWithPatternImage(UIImage.imageNamed(image))      
   end
 
   def changeColors(level)
     p level.to_s
     if level > 5 && level <= 10
-      @car_view.backgroundColor = getColor("Warning1", "Mask")
-      @level_view.backgroundColor = getColor("Warning1", "Background")
-      @state_icon.image = UIImage.imageNamed("icnWarning.png")
+      @car_view.backgroundColor = getImage(WARNING1_IMAGE)
+      @level_view.backgroundColor = getImage(BG_WARNING1_IMAGE)
+      @state_icon.backgroundColor = getImage("icnWarning.png")
       @state_icon.setHidden(0)
     elsif level > 10
-      @car_view.backgroundColor = getColor("Warning2", "Mask")
-      @level_view.backgroundColor = getColor("Warning2", "Background")
-      @state_icon.image = UIImage.imageNamed("icnWarning.png")
+      @car_view.backgroundColor = getImage(WARNING2_IMAGE)
+      @level_view.backgroundColor = getImage(BG_WARNING2_IMAGE)
+      @state_icon.backgroundColor = getImage("icnWarning.png")
       @state_icon.setHidden(0)
     else
-      @car_view.backgroundColor = getColor("Play", "Mask")
-      @level_view.backgroundColor = getColor("Play", "Background")
+      @car_view.backgroundColor = getImage(PLAY_IMAGE)
+      @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
       @state_icon.setHidden(1)
     end
   end
@@ -132,9 +121,9 @@ class DriverController < UIViewController
   def touchesEnded(touches, withEvent:event)
     if @engine.status == 1
       @engine.pause
-      @car_view.backgroundColor = getColor("Pause", "Mask")
-      @level_view.backgroundColor = getColor("Pause", "Background")
-      @state_icon.image = UIImage.imageNamed("icnPause.png")
+      @car_view.backgroundColor = getImage(PAUSE_IMAGE)
+      @level_view.backgroundColor = getImage(BG_PAUSE_IMAGE)
+      @state_icon.backgroundColor = getImage("icnPause.png")
       @state_icon.setHidden(0)
       @time_label.textColor = UIColor.whiteColor
       @km_label.textColor = UIColor.whiteColor
@@ -143,8 +132,8 @@ class DriverController < UIViewController
       @time_label.text = @engine.getTotalDistance
     elsif @engine.status == 0
       @engine.start
-      @car_view.backgroundColor = getColor("Play", "Mask")
-      @level_view.backgroundColor = getColor("Play", "Background")
+      @car_view.backgroundColor = getImage(PLAY_IMAGE)
+      @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
       @state_icon.setHidden(1)
       @time_label.textColor = UIColor.clearColor
       @km_label.textColor = UIColor.clearColor
@@ -161,8 +150,10 @@ class DriverController < UIViewController
     if @engine.status == -1
       initialize_scores
       @engine.start
+      @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayInactive.png"), forState:UIControlStateNormal)
     else
       @engine.stop
+      @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayActive.png"), forState:UIControlStateNormal)
 
       # Show score view
     end
@@ -184,12 +175,20 @@ class DriverController < UIViewController
     #  110 = 100
     #    ? = x
   end
+
+  def clickSimulAcel
+    @engine.simulateAccel
+  end
+
+  def clickSimulLoc
+    @engine.simulateLocator
+  end
   
   def configure_ui
     self.view.backgroundColor = UIColor.blackColor
 
     @level_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
-    @level_view.backgroundColor = getColor("Play", "Background")
+    @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
 
     self.view.addSubview(@level_view)
 
@@ -199,7 +198,7 @@ class DriverController < UIViewController
     self.view.addSubview(@score_view)
 
     @car_view = UIView.alloc.initWithFrame [[0, 0], [480, 320]]
-    @car_view.backgroundColor = getColor("Play", "Mask")
+    @car_view.backgroundColor = getImage(PLAY_IMAGE)
 
     self.view.addSubview(@car_view)
 
@@ -277,8 +276,18 @@ class DriverController < UIViewController
     @buttonMap.addTarget(self, action: :clickShowMap, forControlEvents: UIControlEventTouchUpInside)
     @car_view.addSubview(@buttonMap)
 
+    @simul_acel = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @simul_acel.frame = [[10, 45],[20, 20]]
+    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)
+    @car_view.addSubview(@simul_acel)
+
+    @simul_loc = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @simul_loc.frame = [[10, 65],[20, 20]]
+    @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
+    @car_view.addSubview(@simul_loc)
+
     @state_icon = UIView.alloc.initWithFrame([[20, 20], [81, 81]])
-    @state_icon.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("icnPause.png"))
+    @state_icon.backgroundColor = getImage("icnPause.png")
     @car_view.addSubview(@stateIcon)
     
   end
