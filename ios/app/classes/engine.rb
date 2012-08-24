@@ -17,18 +17,30 @@ class Engine
     @simulate_num = 0
   end
 
-  def simulateAccel
-    accelerate(0.55, 0.55)
-    accelerate(0, 0)
+  def simulateAccel    
+    accelerate(rand(7)/10.0, rand(7)/10.0)
   end
 
   def simulateLocator
     @simulate_num = @simulate_num + 1
-    movement = @simulate_num * 0.000000003
-    p @simulate_num
-    p movement
-    p 37.7858276367188 + movement + 10
-    locate(37.7858276367188 + movement, -122.406402587891 + movement, 37.7858276367191 + movement, -122.406402587893 + movement)
+    p 37.785_827_636_718_8 + (@simulate_num / 200_000_000.0)
+    @movement = (@simulate_num / 200_000_000.0)
+    p @movement
+    inilat1 = 37.785_827_636_718_8
+    inilon1 = -122.406_402_587_891
+    inilat2 = 37.785_827_636_719_1
+    inilon2 = -122.406_402_587_894
+
+    lat1 = inilat1 + @movement
+    lon1 = inilon1 + @movement
+    lat2 = inilat2 + @movement
+    lon2 = inilon2 + @movement
+    
+    p "lat1 #{lat1}"
+    p "lon1 #{lon1}"
+    p "lat2 #{lat2}"
+    p "lon2 #{lon2}"
+    locate(lat1, lon1, lat2, lon2)
   end
 
 	def start
