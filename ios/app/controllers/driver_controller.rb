@@ -133,7 +133,7 @@ class DriverController < UIViewController
     elsif @engine.status == 0
       @engine.start
       @car_view.backgroundColor = getImage(PLAY_IMAGE)
-      @level_view.backgroundColor = getColor(BG_PLAY_IMAGE)
+      @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
       @state_icon.setHidden(1)
       @time_label.textColor = UIColor.clearColor
       @km_label.textColor = UIColor.clearColor
