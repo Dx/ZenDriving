@@ -14,6 +14,21 @@ class Engine
     @initial_y_value = 0
     @status = -1
     @initial_time = Time.new
+    @simulate_num = 0
+  end
+
+  def simulateAccel
+    accelerate(0.55, 0.55)
+    accelerate(0, 0)
+  end
+
+  def simulateLocator
+    @simulate_num = @simulate_num + 1
+    movement = @simulate_num * 0.000000003
+    p @simulate_num
+    p movement
+    p 37.7858276367188 + movement + 10
+    locate(37.7858276367188 + movement, -122.406402587891 + movement, 37.7858276367191 + movement, -122.406402587893 + movement)
   end
 
 	def start
@@ -62,25 +77,32 @@ class Engine
       result[:to].class == CLLocation
       result[:from].class == CLLocation
 
-      if @initial_coordinate == nil
-        @initial_coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
-        @coordinates << @initial_coordinate
+      if result[:from] != nil && result[:to] != nil
+        locate(result[:from].latitude, result[:from].longitude, result[:to].latitude, result[:to].longitude)
       end
 
-      if result[:from] != nil
-        @distance = haversin_distance(result[:to].latitude, result[:to].longitude, result[:from].latitude, result[:from].longitude)
-        @total_distance += @distance
-        coordinate = CLLocationCoordinate2D.new(result[:to].latitude, result[:to].longitude)
-        movement_notification = MovementNotification.new(@distance, coordinate)
-        @coordinates << coordinate
-
-        self.notificateLocator(movement_notification)
-      end
-      
       if @status != 1
         break
       end
     end
+  end
+
+  def locate(initialLatitude, initialLongitude, finalLatitude, finalLongitude)
+    if @initial_coordinate == nil
+      @initial_coordinate = CLLocationCoordinate2D.new(initialLatitude, initialLongitude)
+      @coordinates << @initial_coordinate
+    end
+
+    p "posicion #{initialLatitude}, #{initialLongitude}, #{finalLatitude}, #{finalLongitude}"
+    
+    @distance = haversin_distance(finalLatitude, finalLongitude, initialLatitude, initialLongitude)
+    @total_distance += @distance
+    coordinate = CLLocationCoordinate2D.new(finalLatitude, finalLongitude)
+
+    movement_notification = MovementNotification.new(@distance, coordinate)
+    @coordinates << coordinate
+
+    self.notificateLocator(movement_notification)
   end
 
 	def initializeAccelerometer
@@ -89,14 +111,17 @@ class Engine
   end
 
   def accelerometer (accelerometer, didAccelerate:acceleration)
+    accelerate(acceleration.x, acceleration.y)    
+  end
 
+  def accelerate(x, y)
     if @initial_x_value == 0
-      @initial_x_value = acceleration.x
-      @initial_y_value = acceleration.y
+      @initial_x_value = x
+      @initial_y_value = y
     end
     
-    move_x_value = ((@initial_x_value - acceleration.x)*20.0).abs.to_i
-    move_y_value = ((@initial_y_value - acceleration.y)*20.0).abs.to_i 
+    move_x_value = ((@initial_x_value - x)*20.0).abs.to_i
+    move_y_value = ((@initial_y_value - y)*20.0).abs.to_i 
 
     notif = AcceleratorNotification.new(move_x_value + move_y_value)
 
