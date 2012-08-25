@@ -46,6 +46,11 @@ const CGFloat POLYLINE_WIDTH = 4.0;
 	return self;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation {
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIDeviceOrientationLandscapeLeft);
+}
+
 -(void) drawRect:(CGRect)rect {
 	
 	NVPolylineAnnotation* annotation = (NVPolylineAnnotation*)_polylineView.annotation;
@@ -205,6 +210,11 @@ const CGFloat POLYLINE_WIDTH = 4.0;
 
 - (void) setCenterOffset:(CGPoint) centerOffset {
 	[super setCenterOffset:centerOffset];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)interfaceOrientation {
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIDeviceOrientationLandscapeLeft);
 }
 
 - (void)dealloc {

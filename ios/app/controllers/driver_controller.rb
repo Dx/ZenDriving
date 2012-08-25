@@ -146,7 +146,22 @@ class DriverController < UIViewController
 
   def clickShowMap
     @engine.stop
-    self.presentModalViewController(NVMapViewController.alloc.initWithPoints(@engine.getCoordinates), animated:true)
+    points = [CLLocation.alloc.initWithLatitude(19.297862, longitude:-99.080187),
+      CLLocation.alloc.initWithLatitude(19.297595, longitude:-99.080207),
+      CLLocation.alloc.initWithLatitude(19.297300, longitude:-99.080307),
+      CLLocation.alloc.initWithLatitude(19.297100, longitude:-99.080407),
+      CLLocation.alloc.initWithLatitude(19.296900, longitude:-99.080507),
+      CLLocation.alloc.initWithLatitude(19.296700, longitude:-99.080607)
+    ]
+    print @engine.getCoordinates
+    #self.presentModalViewController(NVMapViewController.alloc.initWithPoints(points), animated:true)
+
+    @mapView = MapViewController.alloc.init
+    @mapView.points = points
+    @mapView.min = @engine.getTimeElapsed
+    @mapView.km = @engine.getTotalDistance
+    @mapView.pts = @total_score.to_s
+    self.presentModalViewController(@mapView, animated:true)
   end
 
   def animate_to_next_point(view, percentage)
