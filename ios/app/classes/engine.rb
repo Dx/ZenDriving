@@ -73,7 +73,7 @@ class Engine
   end
 
   def getTotalDistance
-    (@total_distance/1000).to_s
+    (@total_distance/1000).to_i.to_s
   end
 
   def notificateLocator(locatorNotif)

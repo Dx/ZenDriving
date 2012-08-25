@@ -26,7 +26,7 @@ class DriverController < UIViewController
     @temp_score = 0
     @total_score = 0
     @temp_distance = 0
-    @best_score = 0
+    @best_score = 0    
   end
 
   def paintScores
@@ -38,7 +38,7 @@ class DriverController < UIViewController
   end
 
   def getImage(image)
-    UIColor.alloc.initWithPatternImage(UIImage.imageNamed(image))      
+    UIColor.alloc.initWithPatternImage(UIImage.imageNamed(image))
   end
 
   def changeColors(level)
@@ -47,15 +47,14 @@ class DriverController < UIViewController
       @car_view.backgroundColor = getImage(WARNING1_IMAGE)
       @level_view.backgroundColor = getImage(BG_WARNING1_IMAGE)
       @state_icon.backgroundColor = getImage("icnWarning.png")
-      @state_icon.setHidden(0)
     elsif level > 10
       @car_view.backgroundColor = getImage(WARNING2_IMAGE)
       @level_view.backgroundColor = getImage(BG_WARNING2_IMAGE)
       @state_icon.backgroundColor = getImage("icnWarning.png")
-      @state_icon.setHidden(0)
     else
       @car_view.backgroundColor = getImage(PLAY_IMAGE)
       @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
+      @state_icon.backgroundColor = UIColor.clearColor
       @state_icon.setHidden(1)
     end
   end
@@ -70,6 +69,7 @@ class DriverController < UIViewController
         @total_score += (@temp_score > 100) ? 100 : @temp_score
         showTempScore
         animate_to_next_point @level_view, 100
+        # play100mSound
         @temp_distance = 0
         @temp_score = 0
       end
@@ -79,11 +79,22 @@ class DriverController < UIViewController
     end
   end
 
-  def showTempScore
+  # def play100mSound
+  #   url = NSURL.fileURLWithPath(NSBundle.mainBundle.pathForResource("poing", ofType:"mp3")) 
+  #   er = Pointer.new(:object) 
+  #   audioPlayer = AVAudioPlayer.alloc.initWithContentsOfURL (url, error: er)
+  #   audioPlayer.setNumberOfLoops(-1)
     
-    @best_score = (@temp_score > @best_score) ? @temp_score : @best_score
-    @prueba_label.text = @best_score.to_s
+  #   if (audioPlayer == nil)
+  #     NSLog("fallo")
+  #   else 
+  #     audioPlayer.play
+  #   end
+  # end
 
+  def showTempScore    
+    @best_score = (@temp_score > @best_score) ? @temp_score : @best_score
+    @best_label.text = @best_score.to_s
     # @second_level_label.textColor = UIColor.whiteColor
     # @second_level_label.backgroundColor = UIColor.clearColor
     # @second_level_label.frame = [[0,0], [480, 320]]
@@ -99,7 +110,6 @@ class DriverController < UIViewController
     #     @second_level_label.textColor = UIColor.clearColor
     #     @second_level_label.transform = CGAffineTransformMakeScale( 1.0, 1.0 );
     #   })
-
   end
 
   def suscribe_to_accelerator_event
@@ -127,19 +137,33 @@ class DriverController < UIViewController
       @car_view.backgroundColor = getImage(PAUSE_IMAGE)
       @level_view.backgroundColor = getImage(BG_PAUSE_IMAGE)
       @state_icon.backgroundColor = getImage("icnPause.png")
-      @state_icon.setHidden(0)
+
+      @time_title_label.textColor = UIColor.whiteColor
       @time_label.textColor = UIColor.whiteColor
+
+      @km_title_label.textColor = UIColor.whiteColor
       @km_label.textColor = UIColor.whiteColor
+
+      @score_title_label.textColor = UIColor.whiteColor
+      @best_title_label.textColor = UIColor.whiteColor
+
       @level_label.textColor = UIColor.clearColor
-      @km_label.text = @engine.getTimeElapsed
-      @time_label.text = @engine.getTotalDistance
+      @km_label.text = @engine.getTotalDistance
+      @time_label.text = @engine.getTimeElapsed
+
     elsif @engine.status == 0
       @engine.start
       @car_view.backgroundColor = getImage(PLAY_IMAGE)
-      @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
-      @state_icon.setHidden(1)
+      @state_icon.backgroundColor = UIColor.clearColor
+      
       @time_label.textColor = UIColor.clearColor
+      @time_title_label.textColor = UIColor.clearColor
+
       @km_label.textColor = UIColor.clearColor
+      @km_title_label.textColor = UIColor.clearColor
+      @score_title_label.textColor = UIColor.clearColor
+      @best_title_label.textColor = UIColor.clearColor
+
       @level_label.textColor = UIColor.whiteColor
     end
   end
@@ -181,6 +205,7 @@ class DriverController < UIViewController
   end
 
   def clickSimulAcel
+    # play100mSound
     @engine.simulateAccel
   end
 
@@ -197,7 +222,7 @@ class DriverController < UIViewController
     self.view.addSubview(@level_view)
 
     @score_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
-    @score_view.backgroundColor = UIColor.grayColor
+    @score_view.backgroundColor = UIColor.lightGrayColor
 
     self.view.addSubview(@score_view)
 
@@ -221,14 +246,14 @@ class DriverController < UIViewController
     @best_label.textAlignment = UITextAlignmentCenter 
     @best_label.textColor = UIColor.whiteColor
     @best_label.backgroundColor = UIColor.clearColor
-    @best_label.frame = [[160, 43], [150, 34]]
+    @best_label.frame = [[160, 45], [150, 34]]
     @car_view.addSubview(@best_label)
 
     @best_title_label = UILabel.new
     @best_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
     @best_title_label.text = 'BEST'
     @best_title_label.textAlignment = UITextAlignmentCenter 
-    @best_title_label.textColor = UIColor.whiteColor
+    @best_title_label.textColor = UIColor.clearColor
     @best_title_label.backgroundColor = UIColor.clearColor
     @best_title_label.frame = [[160, 15], [150, 34]]
     @car_view.addSubview(@best_title_label)
@@ -255,7 +280,7 @@ class DriverController < UIViewController
     @km_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
     @km_title_label.text = 'KM'
     @km_title_label.textAlignment = UITextAlignmentCenter
-    @km_title_label.textColor = UIColor.whiteColor
+    @km_title_label.textColor = UIColor.clearColor
     @km_title_label.backgroundColor = UIColor.clearColor
     @km_title_label.frame = [[20, 250], [150, 34]]
     @car_view.addSubview(@km_title_label)
@@ -273,7 +298,7 @@ class DriverController < UIViewController
     @score_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
     @score_title_label.text = 'PUNTOS'
     @score_title_label.textAlignment = UITextAlignmentCenter
-    @score_title_label.textColor = UIColor.whiteColor
+    @score_title_label.textColor = UIColor.clearColor
     @score_title_label.backgroundColor = UIColor.clearColor
     @score_title_label.frame = [[160, 250], [150, 34]]
     @car_view.addSubview(@score_title_label)
@@ -291,7 +316,7 @@ class DriverController < UIViewController
     @time_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
     @time_title_label.text = 'MIN'
     @time_title_label.textAlignment = UITextAlignmentCenter
-    @time_title_label.textColor = UIColor.whiteColor
+    @time_title_label.textColor = UIColor.clearColor
     @time_title_label.backgroundColor = UIColor.clearColor
     @time_title_label.frame = [[300, 250], [150, 34]]
     @car_view.addSubview(@time_title_label)
@@ -302,18 +327,19 @@ class DriverController < UIViewController
     @car_view.addSubview(@buttonMap)
 
     @simul_acel = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @simul_acel.frame = [[10, 195],[20, 20]]
-    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@simul_acel)
+    @simul_acel.frame = [[10, 195],[20, 20]]    
+    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)    
+    # @car_view.addSubview(@simul_acel)
 
     @simul_loc = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @simul_loc.frame = [[10, 215],[20, 20]]
     @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@simul_loc)
+    # @car_view.addSubview(@simul_loc)
 
-    @state_icon = UIView.alloc.initWithFrame([[20, 20], [81, 81]])
-    @state_icon.backgroundColor = getImage("icnPause.png")
-    @car_view.addSubview(@stateIcon)
+    # @state_icon = UIView.alloc.initWithFrame([[194, 113], [81, 81]])
+    @state_icon = UIView.alloc.initWithFrame([[380, 20], [81, 81]])
+    @state_icon.backgroundColor = UIColor.clearColor
+    self.view.addSubview(@state_icon)
 
     # @second_level_label = UILabel.new
     # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
