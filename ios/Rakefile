@@ -11,11 +11,12 @@ BW.require '/app/main_controller.rb'
 Motion::Project::App.setup do |app|
   # app.codesign_certificate = "iPhone Developer: Ramses Reyes Contreras (94Q7H97XUA)"
   app.name = 'ZenDriving'
+  app.icons = ['Icon.png', 'Icon@2x.png']
   app.frameworks += ['CoreLocation', 'MapKit', 'CoreGraphics', 'QuartzCore', 'UIKit', 'AVFoundation']
   app.interface_orientations = [:landscape_left]
   app.resources_dir = "resources"
-   # app.vendor_project('vendor/nvpolylinelib',
-   #         :xcode,
-   #         :target => ['nvpolylinelib'],
-   #         :headers_dir => 'nvpolylinelib')
+  # app.vendor_project('vendor/nvpolylinelib',
+  #          :xcode,
+  #          :target => ['nvpolylinelib'],
+  #          :headers_dir => 'nvpolylinelib')
 end

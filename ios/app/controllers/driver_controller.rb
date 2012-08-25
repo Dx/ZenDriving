@@ -205,7 +205,7 @@ class DriverController < UIViewController
     self.view.addSubview(@level_view)
 
     @score_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
-    @score_view.backgroundColor = UIColor.grayColor
+    @score_view.backgroundColor = UIColor.lightGrayColor
 
     self.view.addSubview(@score_view)
 
@@ -310,16 +310,16 @@ class DriverController < UIViewController
     @car_view.addSubview(@buttonMap)
 
     @simul_acel = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @simul_acel.frame = [[10, 195],[20, 20]]
-    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@simul_acel)
+    @simul_acel.frame = [[10, 195],[20, 20]]    
+    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)    
+    # @car_view.addSubview(@simul_acel)
 
     @simul_loc = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @simul_loc.frame = [[10, 215],[20, 20]]
     @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@simul_loc)
+    # @car_view.addSubview(@simul_loc)
 
-    @state_icon = UIView.alloc.initWithFrame([[192, 20], [81, 81]])
+    @state_icon = UIView.alloc.initWithFrame([[194, 113], [81, 81]])
     @state_icon.backgroundColor = UIColor.clearColor
     @car_view.addSubview(@state_icon)
 
