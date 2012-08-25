@@ -13,7 +13,7 @@ Motion::Project::App.setup do |app|
   app.name = 'ZenDriving'
   app.icons = ['Icon.png', 'Icon@2x.png']
   app.frameworks += ['CoreLocation', 'MapKit', 'CoreGraphics', 'QuartzCore', 'UIKit']
-  app.interface_orientations = [:landscape_right]
+  app.interface_orientations = [:landscape_left]
   app.resources_dir = "resources"
   app.vendor_project('vendor/nvpolylinelib',
            :xcode,

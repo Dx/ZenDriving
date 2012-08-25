@@ -18,7 +18,8 @@ class DriverController < UIViewController
 
     @engine = Engine.new
 
-    clickStartButton
+    initialize_scores
+    @engine.start
   end
 
   def initialize_scores
@@ -144,21 +145,8 @@ class DriverController < UIViewController
   end
 
   def clickShowMap
+    @engine.stop
     self.presentModalViewController(NVMapViewController.alloc.initWithPoints(@engine.getCoordinates), animated:true)
-  end
-
-  def clickStartButton
-    
-    if @engine.status == -1
-      initialize_scores
-      @engine.start
-      @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayInactive.png"), forState:UIControlStateNormal)
-    else
-      @engine.stop
-      @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayActive.png"), forState:UIControlStateNormal)
-
-      # Show score view
-    end
   end
 
   def animate_to_next_point(view, percentage)
@@ -169,8 +157,7 @@ class DriverController < UIViewController
       animations:lambda{
           view.frame = [[0,position], [400, 400]]
         },
-      completion:lambda{|finished| 
-          # self.animate_to_next_point
+      completion:lambda{|finished|           
         }
     )
     # 215 = 0 105 = 100
@@ -205,22 +192,31 @@ class DriverController < UIViewController
     self.view.addSubview(@car_view)
 
     @accelerate_label = UILabel.new
-    @accelerate_label.font = UIFont.systemFontOfSize(15)
-    @accelerate_label.text = 'Acel'
+    @accelerate_label.font = UIFont.systemFontOfSize(10)
+    @accelerate_label.text = ''
     @accelerate_label.textAlignment = UITextAlignmentCenter 
     @accelerate_label.textColor = UIColor.whiteColor
     @accelerate_label.backgroundColor = UIColor.clearColor
     @accelerate_label.frame = [[20, 20], [150, 30]]
     @car_view.addSubview(@accelerate_label)
 
-    @prueba_label = UILabel.new
-    @prueba_label.font = UIFont.systemFontOfSize(15)
-    @prueba_label.text = 'Best'
-    @prueba_label.textAlignment = UITextAlignmentCenter 
-    @prueba_label.textColor = UIColor.whiteColor
-    @prueba_label.backgroundColor = UIColor.clearColor
-    @prueba_label.frame = [[120, 20], [150, 30]]
-    @car_view.addSubview(@prueba_label)
+    @best_label = UILabel.new
+    @best_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
+    @best_label.text = '0'
+    @best_label.textAlignment = UITextAlignmentCenter 
+    @best_label.textColor = UIColor.whiteColor
+    @best_label.backgroundColor = UIColor.clearColor
+    @best_label.frame = [[160, 43], [150, 34]]
+    @car_view.addSubview(@best_label)
+
+    @best_title_label = UILabel.new
+    @best_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
+    @best_title_label.text = 'BEST'
+    @best_title_label.textAlignment = UITextAlignmentCenter 
+    @best_title_label.textColor = UIColor.whiteColor
+    @best_title_label.backgroundColor = UIColor.clearColor
+    @best_title_label.frame = [[160, 15], [150, 34]]
+    @car_view.addSubview(@best_title_label)
 
     @level_label = UILabel.new
     @level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
@@ -228,8 +224,81 @@ class DriverController < UIViewController
     @level_label.textAlignment = UITextAlignmentCenter
     @level_label.textColor = UIColor.whiteColor
     @level_label.backgroundColor = UIColor.clearColor
-    @level_label.frame = [[160, 150], [150, 34]]
+    @level_label.frame = [[160, 140], [150, 34]]
     @car_view.addSubview(@level_label)
+
+    @km_label = UILabel.new
+    @km_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
+    @km_label.text = '0'
+    @km_label.textAlignment = UITextAlignmentCenter
+    @km_label.textColor = UIColor.clearColor
+    @km_label.backgroundColor = UIColor.clearColor
+    @km_label.frame = [[20, 220], [150, 34]]
+    @car_view.addSubview(@km_label)
+
+    @km_title_label = UILabel.new
+    @km_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
+    @km_title_label.text = 'KM'
+    @km_title_label.textAlignment = UITextAlignmentCenter
+    @km_title_label.textColor = UIColor.whiteColor
+    @km_title_label.backgroundColor = UIColor.clearColor
+    @km_title_label.frame = [[20, 250], [150, 34]]
+    @car_view.addSubview(@km_title_label)
+
+    @score_label = UILabel.new
+    @score_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
+    @score_label.text = '0'
+    @score_label.textAlignment = UITextAlignmentCenter
+    @score_label.textColor = UIColor.whiteColor
+    @score_label.backgroundColor = UIColor.clearColor
+    @score_label.frame = [[160, 220], [150, 34]]
+    @car_view.addSubview(@score_label)
+
+    @score_title_label = UILabel.new
+    @score_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
+    @score_title_label.text = 'PUNTOS'
+    @score_title_label.textAlignment = UITextAlignmentCenter
+    @score_title_label.textColor = UIColor.whiteColor
+    @score_title_label.backgroundColor = UIColor.clearColor
+    @score_title_label.frame = [[160, 250], [150, 34]]
+    @car_view.addSubview(@score_title_label)
+
+    @time_label = UILabel.new
+    @time_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:37)
+    @time_label.text = '0m'
+    @time_label.textAlignment = UITextAlignmentCenter
+    @time_label.textColor = UIColor.clearColor
+    @time_label.backgroundColor = UIColor.clearColor
+    @time_label.frame = [[300, 220], [150, 34]]
+    @car_view.addSubview(@time_label)
+
+    @time_title_label = UILabel.new
+    @time_title_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:16)
+    @time_title_label.text = 'MIN'
+    @time_title_label.textAlignment = UITextAlignmentCenter
+    @time_title_label.textColor = UIColor.whiteColor
+    @time_title_label.backgroundColor = UIColor.clearColor
+    @time_title_label.frame = [[300, 250], [150, 34]]
+    @car_view.addSubview(@time_title_label)
+
+    @buttonMap = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @buttonMap.frame = [[10, 25],[20, 20]]
+    @buttonMap.addTarget(self, action: :clickShowMap, forControlEvents: UIControlEventTouchUpInside)
+    @car_view.addSubview(@buttonMap)
+
+    @simul_acel = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @simul_acel.frame = [[10, 195],[20, 20]]
+    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)
+    @car_view.addSubview(@simul_acel)
+
+    @simul_loc = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @simul_loc.frame = [[10, 215],[20, 20]]
+    @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
+    @car_view.addSubview(@simul_loc)
+
+    @state_icon = UIView.alloc.initWithFrame([[20, 20], [81, 81]])
+    @state_icon.backgroundColor = getImage("icnPause.png")
+    @car_view.addSubview(@stateIcon)
 
     # @second_level_label = UILabel.new
     # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
@@ -239,63 +308,11 @@ class DriverController < UIViewController
     # @second_level_label.backgroundColor = UIColor.clearColor
     # @second_level_label.frame = [[160, 150], [150, 34]] 
     # @car_view.addSubview(@second_level_label)
-
-    @score_label = UILabel.new
-    @score_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
-    @score_label.text = '0'
-    @score_label.textAlignment = UITextAlignmentCenter
-    @score_label.textColor = UIColor.whiteColor
-    @score_label.backgroundColor = UIColor.clearColor
-    @score_label.frame = [[160, 250], [150, 34]]
-    @car_view.addSubview(@score_label)
-
-    @km_label = UILabel.new
-    @km_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
-    @km_label.text = '0'
-    @km_label.textAlignment = UITextAlignmentCenter
-    @km_label.textColor = UIColor.clearColor
-    @km_label.backgroundColor = UIColor.clearColor
-    @km_label.frame = [[20, 250], [150, 34]]
-    @car_view.addSubview(@km_label)
-
-    @time_label = UILabel.new
-    @time_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
-    @time_label.text = '0m'
-    @time_label.textAlignment = UITextAlignmentCenter
-    @time_label.textColor = UIColor.clearColor
-    @time_label.backgroundColor = UIColor.clearColor
-    @time_label.frame = [[300, 250], [150, 34]]
-    @car_view.addSubview(@time_label)
-
-    @startButton = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @startButton.frame = [[380, 20],[81, 81]]
-    @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayActive.png"), forState:UIControlStateNormal)
-    @startButton.addTarget(self, action: :clickStartButton, forControlEvents: UIControlEventTouchUpInside)
-    #@car_view.addSubview(@startButton)
-
-    @buttonMap = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @buttonMap.frame = [[10, 25],[20, 20]]
-    @buttonMap.addTarget(self, action: :clickShowMap, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@buttonMap)
-
-    @simul_acel = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @simul_acel.frame = [[10, 45],[20, 20]]
-    @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@simul_acel)
-
-    @simul_loc = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @simul_loc.frame = [[10, 65],[20, 20]]
-    @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@simul_loc)
-
-    @state_icon = UIView.alloc.initWithFrame([[20, 20], [81, 81]])
-    @state_icon.backgroundColor = getImage("icnPause.png")
-    @car_view.addSubview(@stateIcon)
     
   end
 
   def shouldAutorotateToInterfaceOrientation(orientation)
-    if orientation != UIDeviceOrientationLandscapeRight
+    if orientation != UIDeviceOrientationLandscapeLeft
       return false
     else
       return true

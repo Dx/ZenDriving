@@ -23,13 +23,13 @@ class Engine
 
   def simulateLocator
     @simulate_num = @simulate_num + 1
-    p 37.785_827_636_718_8 + (@simulate_num / 200_000_000.0)
-    @movement = (@simulate_num / 200_000_000.0)
+    p 37.785827 + (@simulate_num / 200.0)
+    @movement = (@simulate_num / 200.0)
     p @movement
-    inilat1 = 37.785_827_636_718_8
-    inilon1 = -122.406_402_587_891
-    inilat2 = 37.785_827_636_719_1
-    inilon2 = -122.406_402_587_894
+    inilat1 = 37.785827
+    inilon1 = -122.406402
+    inilat2 = 37.785828
+    inilon2 = -122.406402
 
     lat1 = inilat1 + @movement
     lon1 = inilon1 + @movement
