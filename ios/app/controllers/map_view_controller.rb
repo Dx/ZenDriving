@@ -74,10 +74,15 @@ class MapViewController < UIViewController
   end
 
   def didTapMap
-    self.presentModalViewController(NVMapViewController.alloc.initWithPoints(@points), animated:true)
+    @mapPointsView = NVMapViewController.alloc.initWithPoints(@points)
+    #@returnView = UIView.alloc.initWithFrame(CGRectMake(30, 30, 280, 35))
+    #@returnView.backgroundColor = UIColor.blackColor
+    #@mapPointsView.addSubview(@returnView)
+    self.presentModalViewController(@mapPointsView, animated:true)
   end
 
   def clickGame
+    self.dismissModalViewControllerAnimated(true)
   end
 
   def viewDidLoad
