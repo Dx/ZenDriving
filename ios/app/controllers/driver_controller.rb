@@ -17,6 +17,8 @@ class DriverController < UIViewController
     suscribe_to_accelerator_event
 
     @engine = Engine.new
+
+    clickStartButton
   end
 
   def initialize_scores
@@ -269,7 +271,7 @@ class DriverController < UIViewController
     @startButton.frame = [[380, 20],[81, 81]]
     @startButton.setBackgroundImage(UIImage.imageNamed("btnPlayActive.png"), forState:UIControlStateNormal)
     @startButton.addTarget(self, action: :clickStartButton, forControlEvents: UIControlEventTouchUpInside)
-    @car_view.addSubview(@startButton)
+    #@car_view.addSubview(@startButton)
 
     @buttonMap = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @buttonMap.frame = [[10, 25],[20, 20]]
