@@ -46,7 +46,7 @@ class DriverController < UIViewController
     if level > 5 && level <= 10
       @car_view.backgroundColor = getImage(WARNING1_IMAGE)
       @level_view.backgroundColor = getImage(BG_WARNING1_IMAGE)
-      @state_icon.backgroundColor = getImage("icnPause.png")
+      @state_icon.backgroundColor = getImage("icnWarning.png")
     elsif level > 10
       @car_view.backgroundColor = getImage(WARNING2_IMAGE)
       @level_view.backgroundColor = getImage(BG_WARNING2_IMAGE)
@@ -145,6 +145,7 @@ class DriverController < UIViewController
       @km_label.textColor = UIColor.whiteColor
 
       @score_title_label.textColor = UIColor.whiteColor
+      @best_title_label.textColor = UIColor.whiteColor
 
       @level_label.textColor = UIColor.clearColor
       @km_label.text = @engine.getTotalDistance
@@ -161,6 +162,7 @@ class DriverController < UIViewController
       @km_label.textColor = UIColor.clearColor
       @km_title_label.textColor = UIColor.clearColor
       @score_title_label.textColor = UIColor.clearColor
+      @best_title_label.textColor = UIColor.clearColor
 
       @level_label.textColor = UIColor.whiteColor
     end
@@ -319,9 +321,10 @@ class DriverController < UIViewController
     @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
     # @car_view.addSubview(@simul_loc)
 
-    @state_icon = UIView.alloc.initWithFrame([[194, 113], [81, 81]])
+    # @state_icon = UIView.alloc.initWithFrame([[194, 113], [81, 81]])
+    @state_icon = UIView.alloc.initWithFrame([[380, 20], [81, 81]])
     @state_icon.backgroundColor = UIColor.clearColor
-    @car_view.addSubview(@state_icon)
+    self.view.addSubview(@state_icon)
 
     # @second_level_label = UILabel.new
     # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
