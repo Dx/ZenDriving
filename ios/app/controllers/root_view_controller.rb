@@ -4,12 +4,13 @@ class RootViewController < UIViewController
   end
 
   def viewDidLoad
-    UIApplication.sharedApplication.setStatusBarOrientation(UIInterfaceOrientationPortrait)
+    UIApplication.sharedApplication.setStatusBarOrientation(UIInterfaceOrientationLandscapeLeft)
 
-    self.view.backgroundColor = UIColor.lightGrayColor
+    self.view.backgroundColor = UIColor.alloc.initWithPatternImage(UIImage.imageNamed("bgGray.png"))
 
     @buttonGame = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @buttonGame.frame = [[120, 170],[50, 50]]
+    @buttonGame.frame = [[120, 170],[81, 81]]
+    @buttonGame.setBackgroundImage(UIImage.imageNamed("btnPlayActive.png"), forState:UIControlStateNormal)
 
     @buttonGame.addTarget(self, action: :clickGame, forControlEvents: UIControlEventTouchUpInside)
 
@@ -21,7 +22,7 @@ class RootViewController < UIViewController
   end
 
   def shouldAutorotateToInterfaceOrientation(orientation)
-    if orientation != UIDeviceOrientationPortrait
+    if orientation != UIDeviceOrientationLandscapeLeft
       return false
     else
       return true
