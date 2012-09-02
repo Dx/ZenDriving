@@ -51,15 +51,15 @@ class DriverController < UIViewController
     p level.to_s
     if level > 5 && level <= 10
       @car_view.backgroundColor = getImage(WARNING1_IMAGE)
-      @level_view.backgroundColor = getImage(BG_WARNING1_IMAGE)
+      self.view.backgroundColor = getImage(BG_WARNING1_IMAGE)
       @state_icon.backgroundColor = getImage("icnWarning.png")
     elsif level > 10
       @car_view.backgroundColor = getImage(WARNING2_IMAGE)
-      @level_view.backgroundColor = getImage(BG_WARNING2_IMAGE)
+      self.view.backgroundColor = getImage(BG_WARNING2_IMAGE)
       @state_icon.backgroundColor = getImage("icnWarning.png")
     else
       @car_view.backgroundColor = getImage(PLAY_IMAGE)
-      @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
+      self.view.backgroundColor = getImage(BG_PLAY_IMAGE)
       @state_icon.backgroundColor = UIColor.clearColor
       @state_icon.setHidden(1)
     end
@@ -108,7 +108,7 @@ class DriverController < UIViewController
     if @engine.status == 1
       @engine.pause
       @car_view.backgroundColor = getImage(PAUSE_IMAGE)
-      @level_view.backgroundColor = getImage(BG_PAUSE_IMAGE)
+      self.view.backgroundColor = getImage(BG_PAUSE_IMAGE)
       @state_icon.backgroundColor = getImage("icnPause.png")
 
       @time_title_label.textColor = UIColor.whiteColor
@@ -171,9 +171,9 @@ class DriverController < UIViewController
     #    ? = x
   end
 
-  def animateLabel(label, text)
+  def animateLabel(label, label_text)
     
-    label.text = text
+    label.text = label_text
 
     UIView.animateWithDuration(0.5, delay:0.3, options:UIViewAnimationOptionCurveLinear, animations:lambda{
         label.transform = CGAffineTransformMakeScale( 3.0, 3.0 )
@@ -187,7 +187,7 @@ class DriverController < UIViewController
 
   def clickSimulAcel
     # @engine.simulateAccel
-    self.animateLabel(@second_level_label, "hola")
+    self.animateLabel(@accelerate_label, "hola")
   end
 
   def clickSimulLoc
