@@ -32,9 +32,15 @@ class DriverController < UIViewController
   def paintScores
     @level_label.text = @temp_score.to_s
     @score_label.text = @total_score.to_s
+    animateLabel(@score_label, @total_score.to_s)
 
     animate_to_next_point @level_view, @temp_distance
     animate_to_next_point @score_view, @temp_score
+  end
+
+  def showTempScore    
+    @best_score = (@temp_score > @best_score) ? @temp_score : @best_score
+    @best_label.text = @best_score.to_s    
   end
 
   def getImage(image)
@@ -67,9 +73,9 @@ class DriverController < UIViewController
         @temp_score += notification.object.distance.to_i
       else        
         @total_score += (@temp_score > 100) ? 100 : @temp_score
+        animateLabel(@level_label, @temp_score.to_s)
         showTempScore
         animate_to_next_point @level_view, 100
-        # play100mSound
         @temp_distance = 0
         @temp_score = 0
       end
@@ -77,39 +83,6 @@ class DriverController < UIViewController
       paintScores
 
     end
-  end
-
-  # def play100mSound
-  #   url = NSURL.fileURLWithPath(NSBundle.mainBundle.pathForResource("poing", ofType:"mp3")) 
-  #   er = Pointer.new(:object) 
-  #   audioPlayer = AVAudioPlayer.alloc.initWithContentsOfURL (url, error: er)
-  #   audioPlayer.setNumberOfLoops(-1)
-    
-  #   if (audioPlayer == nil)
-  #     NSLog("fallo")
-  #   else 
-  #     audioPlayer.play
-  #   end
-  # end
-
-  def showTempScore    
-    @best_score = (@temp_score > @best_score) ? @temp_score : @best_score
-    @best_label.text = @best_score.to_s
-    # @second_level_label.textColor = UIColor.whiteColor
-    # @second_level_label.backgroundColor = UIColor.clearColor
-    # @second_level_label.frame = [[0,0], [480, 320]]
-    # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
-    
-    # @second_level_label.text = @temp_score.to_s
-
-    # UIView.animateWithDuration(0.5, animations:lambda{
-    #     @second_level_label.transform = CGAffineTransformMakeScale( 3.0, 3.0 )          
-    #     @second_level_label.textColor = UIColor.whiteColor
-    #   }, 
-    #   completion:lambda{
-    #     @second_level_label.textColor = UIColor.clearColor
-    #     @second_level_label.transform = CGAffineTransformMakeScale( 1.0, 1.0 );
-    #   })
   end
 
   def suscribe_to_accelerator_event
@@ -170,15 +143,9 @@ class DriverController < UIViewController
 
   def clickShowMap
     @engine.stop
-    points = [CLLocation.alloc.initWithLatitude(19.297862, longitude:-99.080187),
-      CLLocation.alloc.initWithLatitude(19.297595, longitude:-99.080207),
-      CLLocation.alloc.initWithLatitude(19.297300, longitude:-99.080307),
-      CLLocation.alloc.initWithLatitude(19.297100, longitude:-99.080407),
-      CLLocation.alloc.initWithLatitude(19.296900, longitude:-99.080507),
-      CLLocation.alloc.initWithLatitude(19.296700, longitude:-99.080607)
-    ]
-    print @engine.getCoordinates
-    #self.presentModalViewController(NVMapViewController.alloc.initWithPoints(points), animated:true)
+
+    points = @engine.getCoordinates
+    self.presentModalViewController(NVMapViewController.alloc.initWithPoints(points), animated:true)
 
     @mapView = MapViewController.alloc.init
     @mapView.points = points
@@ -204,9 +171,23 @@ class DriverController < UIViewController
     #    ? = x
   end
 
+  def animateLabel(label, text)
+    
+    label.text = text
+
+    UIView.animateWithDuration(0.5, delay:0.3, options:UIViewAnimationOptionCurveLinear, animations:lambda{
+        label.transform = CGAffineTransformMakeScale( 3.0, 3.0 )
+        label.textColor = UIColor.whiteColor
+      }, 
+      completion:lambda{|finished|
+        label.textColor = UIColor.clearColor
+        label.transform = CGAffineTransformMakeScale( 1.0, 1.0 );
+      })
+  end
+
   def clickSimulAcel
-    # play100mSound
-    @engine.simulateAccel
+    # @engine.simulateAccel
+    self.animateLabel(@second_level_label, "hola")
   end
 
   def clickSimulLoc
@@ -214,15 +195,15 @@ class DriverController < UIViewController
   end
   
   def configure_ui
-    self.view.backgroundColor = UIColor.blackColor
+    self.view.backgroundColor = getImage(BG_PLAY_IMAGE)
 
     @level_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
-    @level_view.backgroundColor = getImage(BG_PLAY_IMAGE)
+    @level_view.backgroundColor = UIColor.lightGrayColor
 
     self.view.addSubview(@level_view)
 
     @score_view = UIView.alloc.initWithFrame [[0, 215], [400, 400]]
-    @score_view.backgroundColor = UIColor.lightGrayColor
+    @score_view.backgroundColor = UIColor.blackColor
 
     self.view.addSubview(@score_view)
 
@@ -329,27 +310,17 @@ class DriverController < UIViewController
     @simul_acel = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @simul_acel.frame = [[10, 195],[20, 20]]    
     @simul_acel.addTarget(self, action: :clickSimulAcel, forControlEvents: UIControlEventTouchUpInside)    
-    # @car_view.addSubview(@simul_acel)
+    @car_view.addSubview(@simul_acel)
 
     @simul_loc = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @simul_loc.frame = [[10, 215],[20, 20]]
     @simul_loc.addTarget(self, action: :clickSimulLoc, forControlEvents: UIControlEventTouchUpInside)
-    # @car_view.addSubview(@simul_loc)
+    @car_view.addSubview(@simul_loc)
 
-    # @state_icon = UIView.alloc.initWithFrame([[194, 113], [81, 81]])
     @state_icon = UIView.alloc.initWithFrame([[380, 20], [81, 81]])
     @state_icon.backgroundColor = UIColor.clearColor
     self.view.addSubview(@state_icon)
-
-    # @second_level_label = UILabel.new
-    # @second_level_label.font = UIFont.fontWithName("Futura-CondensedExtraBold", size:40)
-    # @second_level_label.text = ""
-    # @second_level_label.textAlignment = UITextAlignmentCenter
-    # @second_level_label.textColor = UIColor.whiteColor
-    # @second_level_label.backgroundColor = UIColor.clearColor
-    # @second_level_label.frame = [[160, 150], [150, 34]] 
-    # @car_view.addSubview(@second_level_label)
-    
+   
   end
 
   def shouldAutorotateToInterfaceOrientation(orientation)

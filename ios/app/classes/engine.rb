@@ -101,7 +101,7 @@ class Engine
 
   def locate(initialLatitude, initialLongitude, finalLatitude, finalLongitude)
     if @initial_coordinate == nil
-      @initial_coordinate = CLLocationCoordinate2D.new(initialLatitude, initialLongitude)
+      @initial_coordinate = CLLocation.alloc.initWithLatitude(initialLatitude, longitude:initialLongitude)
       @coordinates << @initial_coordinate
     end
 
@@ -109,7 +109,7 @@ class Engine
     
     @distance = haversin_distance(finalLatitude, finalLongitude, initialLatitude, initialLongitude)
     @total_distance += @distance
-    coordinate = CLLocationCoordinate2D.new(finalLatitude, finalLongitude)
+    coordinate = CLLocation.alloc.initWithLatitude(initialLatitude, longitude:initialLongitude)
 
     movement_notification = MovementNotification.new(@distance, coordinate)
     @coordinates << coordinate
