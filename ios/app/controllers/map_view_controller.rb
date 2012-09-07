@@ -10,7 +10,7 @@ class MapViewController < UIViewController
     self.view = UIView.alloc.init
     self.view.backgroundColor = getImage(BACKGROUND)
 
-    @mapView = MKMapView.alloc.initWithFrame(CGRectMake(300, 0, 220, 300))
+    @mapView = MKMapView.alloc.initWithFrame(CGRectMake(300, 0, 220, 300)) 
     #self.view.delegate = self
     self.view.addSubview(@mapView)
     tapRec = UITapGestureRecognizer.alloc.initWithTarget(self, action: :didTapMap)

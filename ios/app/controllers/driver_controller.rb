@@ -177,10 +177,10 @@ class DriverController < UIViewController
 
     UIView.animateWithDuration(0.5, delay:0.3, options:UIViewAnimationOptionCurveLinear, animations:lambda{
         label.transform = CGAffineTransformMakeScale( 3.0, 3.0 )
-        label.textColor = UIColor.whiteColor
+        # label.textColor = UIColor.whiteColor
       }, 
       completion:lambda{|finished|
-        label.textColor = UIColor.clearColor
+        # label.textColor = UIColor.clearColor
         label.transform = CGAffineTransformMakeScale( 1.0, 1.0 );
       })
   end
