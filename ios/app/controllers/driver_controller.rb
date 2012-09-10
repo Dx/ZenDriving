@@ -10,6 +10,7 @@ class DriverController < UIViewController
   BG_WARNING2_IMAGE = "bgWarning2.png"
   BG_PAUSE_IMAGE = "bgPause.png"
 
+  ICON_WARNING = "icnWarning.png"
 
   def viewDidLoad
     configure_ui
@@ -52,11 +53,11 @@ class DriverController < UIViewController
     if level > 5 && level <= 10
       @car_view.backgroundColor = getImage(WARNING1_IMAGE)
       self.view.backgroundColor = getImage(BG_WARNING1_IMAGE)
-      @state_icon.backgroundColor = getImage("icnWarning.png")
+      @state_icon.backgroundColor = getImage(ICON_WARNING)
     elsif level > 10
       @car_view.backgroundColor = getImage(WARNING2_IMAGE)
       self.view.backgroundColor = getImage(BG_WARNING2_IMAGE)
-      @state_icon.backgroundColor = getImage("icnWarning.png")
+      @state_icon.backgroundColor = getImage(ICON_WARNING)
     else
       @car_view.backgroundColor = getImage(PLAY_IMAGE)
       self.view.backgroundColor = getImage(BG_PLAY_IMAGE)
@@ -71,6 +72,7 @@ class DriverController < UIViewController
       if @temp_distance + notification.object.distance.to_i <= 100
         @temp_distance += notification.object.distance.to_i
         @temp_score += notification.object.distance.to_i
+        paintScores
       else        
         @total_score += (@temp_score > 100) ? 100 : @temp_score
         animateLabel(@level_label, @temp_score.to_s)
@@ -79,9 +81,6 @@ class DriverController < UIViewController
         @temp_distance = 0
         @temp_score = 0
       end
-
-      paintScores
-
     end
   end
 
@@ -182,12 +181,20 @@ class DriverController < UIViewController
       completion:lambda{|finished|
         # label.textColor = UIColor.clearColor
         label.transform = CGAffineTransformMakeScale( 1.0, 1.0 );
+        playSound
       })
+  end
+
+  def playSound
+    local_file = File.join(NSBundle.mainBundle.resourcePath, 'poing.mp3')
+
+    BW::Media.play_modal(NSURL.fileURLWithPath(local_file))
   end
 
   def clickSimulAcel
     # @engine.simulateAccel
     self.animateLabel(@accelerate_label, "hola")
+    playSound
   end
 
   def clickSimulLoc

@@ -4,6 +4,7 @@ require 'motion/project'
 require 'bundler'
 require "bubble-wrap/location"
 require "bubble-wrap/core"
+require "bubble-wrap/media"
 Bundler.setup
 Bundler.require :default
 BW.require '/app/main_controller.rb'
