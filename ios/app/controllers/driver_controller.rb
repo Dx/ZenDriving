@@ -23,6 +23,22 @@ class DriverController < UIViewController
     @engine.start
   end
 
+  def tempScore
+    @temp_score
+  end
+
+  def totalScore
+    @total_score
+  end
+
+  def tempDistance
+    @temp_distance
+  end
+
+  def bestScore
+    @bestScore
+  end
+
   def initialize_scores
     @temp_score = 0
     @total_score = 0

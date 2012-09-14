@@ -16,8 +16,8 @@ Motion::Project::App.setup do |app|
   app.frameworks += ['CoreLocation', 'MapKit', 'CoreGraphics', 'QuartzCore', 'UIKit', 'AVFoundation']
   app.interface_orientations = [:landscape_left]
   app.resources_dir = "resources"
-  # app.vendor_project('vendor/nvpolylinelib',
-  #         :xcode,
-  #         :target => ['nvpolylinelib'],
-  #         :headers_dir => 'nvpolylinelib')
+  app.vendor_project('vendor/nvpolylinelib',
+          :xcode,
+          :target => ['nvpolylinelib'],
+          :headers_dir => 'nvpolylinelib')
 end
